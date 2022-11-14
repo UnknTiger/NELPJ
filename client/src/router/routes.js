@@ -83,17 +83,17 @@ const routes = [
       {
         path: "/materials",
         name: "Materials",
-        component: () => import("../components/members/Materials.vue"),
+        component: () => import("../components/members/MemberMaterials.vue"),
       },
       {
         path: "/sponsorships",
         name: "Sponsorships",
-        component: () => import("../components/members/Sponsorships.vue"),
+        component: () => import("../components/members/MemberSponsorships.vue"),
       },
       {
         path: "/messages",
         name: "messages",
-        component: () => import("../components/members/Messages.vue"),
+        component: () => import("../components/members/MemberMessages.vue"),
       },
     ],
   }, //End of member routes
