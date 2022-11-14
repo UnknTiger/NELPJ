@@ -10,11 +10,17 @@ export const useUserStore = defineStore("user", {
     // doubleCount: (state) => state.counter * 2,
   },
   actions: {
-    //     increment() {
-    //       this.counter++;
-    //     },
-    //     decrement() {
-    //       this.counter--;
-    //     },
+    // setUser(role, status) {
+    //   this.role = role
+    //   this.loginStatus = status
+    // },
+    setUser(data) {
+      this.role = data.role;
+      this.loginStatus = data.status;
+    },
+    logout() {
+      this.role = 0;
+      this.loginStatus = false;
+    },
   },
 });

@@ -6,6 +6,7 @@ import {
   createWebHashHistory,
 } from "vue-router";
 import routes from "./routes";
+import { LocalStorage, SessionStorage } from "quasar";
 
 // import { useRouter, useRoute } from "vue-router";
 import { useUserStore } from "../stores/UserStore.js";
@@ -35,32 +36,52 @@ export default route(function (/* { store, ssrContext } */) {
     history: createHistory(process.env.VUE_ROUTER_BASE),
   });
   // const isAuthenticated = true;
+  const UserStore = useUserStore();
+
+  if (!UserStore.loginStatus) {
+    console.log(UserStore.loginStatus);
+    if (LocalStorage.getItem("user")) {
+      UserStore.setUser({
+        role: LocalStorage.getItem("user").role,
+        status: LocalStorage.getItem("user").loginStatus,
+      });
+    }
+  }
 
   Router.beforeEach((to, from, next) => {
-    const UserStore = useUserStore();
     // UserStore.loginStatus = false;
     // UserStore.role = 0;
 
-    if (UserStore.loginStatus) {
-      switch (to.meta.permission) {
-        case "admin":
-          if (UserStore.role != 1) next({ path: "/member" });
-          else next();
-          break;
-
-        case "member":
-          if (UserStore.role != 0) next({ path: "/admin" });
-          else next();
-          break;
-
-        default:
-          next({ path: "/admin" });
-          break;
-      }
+    if (to.path == "/logout") {
+      UserStore.logout();
+      LocalStorage.remove("user");
+      next({
+        path: "/",
+      });
     } else {
-      if (to.matched.some((record) => record.meta.requiresAuth))
-        next({ path: "/" });
-      else next();
+      if (UserStore.loginStatus) {
+        console.log(to.meta.permission);
+
+        switch (to.meta.permission) {
+          case "admin":
+            if (UserStore.role != 1) next({ path: "/member" });
+            else next();
+            break;
+
+          case "member":
+            if (UserStore.role != 0) next({ path: "/admin" });
+            else next();
+            break;
+
+          default:
+            next({ path: "/admin" });
+            break;
+        }
+      } else {
+        if (to.matched.some((record) => record.meta.requiresAuth))
+          next({ path: "/" });
+        else next();
+      }
     }
   });
 

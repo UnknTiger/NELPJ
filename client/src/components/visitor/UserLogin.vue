@@ -32,6 +32,12 @@ import { ref } from "vue";
 import { api } from "../../boot/axios.js";
 import { useRouter, useRoute } from "vue-router";
 import { useUserStore } from "../../stores/UserStore.js";
+import { useQuasar } from "quasar";
+
+const $q = useQuasar();
+// setTimeout(() => {
+//   $q.localStorage.remove("user");
+// }, 3000);
 
 const routes = useRoute();
 const router = useRouter();
@@ -60,7 +66,6 @@ const userOnlogin = () => {
     username: username.value,
     password: password.value,
   };
-
   //communitcating with the server
   // console.log(data);
 
@@ -74,18 +79,20 @@ const userOnlogin = () => {
   api
     .post("/VisitorLogin", data)
     .then((response) => {
-      console.log(response);
-
       if (response.data.length > 0) {
-        console.log(1);
-        UserStore.loginStatus = true;
+        $q.localStorage.set("user", {
+          role: response.data[0].role,
+          loginStatus: true,
+        });
+
+        // UserStore.loginStatus = true;
+        // UserStore.role = response.data[0].role;
+
+        UserStore.setUser({ role: response.data[0].role, status: true });
+
         if (response.data[0].role == 1) {
-          UserStore.loginStatus = true;
-          UserStore.role = 1;
           router.push("/admin");
         } else if (response.data[0].role == 0) {
-          UserStore.loginStatus = true;
-          UserStore.role = 0;
           router.push("/member");
         }
       } else {

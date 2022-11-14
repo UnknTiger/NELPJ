@@ -1,15 +1,33 @@
 <template>
   <q-layout view="hHh lpR fff">
     <q-header elevated class="bg-light-green-10 text-white" height-hint="98">
-      <RouterLink class="navbar-brand" to="/">
-        <img :src="imgPath" style="max-width: 100%; height: auto" />
-      </RouterLink>
-
-      <q-toolbar>
-        <q-btn dense flat round icon="menu" @click="toggleLeftDrawer" />
-        <q-toolbar-title align="left"> Menus </q-toolbar-title>
-        <q-toolbar-title align="right"><UserLogout /></q-toolbar-title>
-      </q-toolbar>
+      <div
+        class="row col-xs-12 items-center justify-center q-pa-none q-ma-none"
+        v-if="$q.screen.lt.md"
+      >
+        <div class="col-xs-2">
+          <q-toolbar>
+            <q-btn dense flat round icon="menu" size="xl" @click="toggleLeftDrawer" />
+          </q-toolbar>
+        </div>
+        <div class="col-xs-10" style="margin-bottom: -10px">
+          <RouterLink class="navbar-brand" to="/">
+            <img :src="imgPath" style="max-width: 100%; height: auto" />
+          </RouterLink>
+        </div>
+      </div>
+      <div class="row inline" v-if="$q.screen.gt.sm">
+        <RouterLink class="navbar-brand" to="/">
+          <img :src="imgPath" style="max-width: 100%; height: auto" />
+        </RouterLink>
+        <div class="col-md-12" style="display: flex; justify-content: space-evenly">
+          <q-toolbar v-for="link in links" :key="link.name">
+            <RouterLink class="nav-link" :to="{ name: link.name }">
+              {{ link.name }}
+            </RouterLink>
+          </q-toolbar>
+        </div>
+      </div>
     </q-header>
 
     <q-drawer
