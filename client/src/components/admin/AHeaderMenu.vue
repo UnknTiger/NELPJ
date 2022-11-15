@@ -5,6 +5,7 @@
         class="row col-xs-12 items-center justify-center q-pa-none q-ma-none"
         v-if="$q.screen.lt.md"
       >
+        <!-- Header for small screen -->
         <div class="col-xs-2">
           <q-toolbar>
             <q-btn dense flat round icon="menu" size="xl" @click="toggleLeftDrawer" />
@@ -16,15 +17,21 @@
           </RouterLink>
         </div>
       </div>
+
+      <!-- Header for standard screen -->
       <div class="row inline" v-if="$q.screen.gt.sm">
         <RouterLink class="navbar-brand" to="/">
           <img :src="imgPath" style="max-width: 100%; height: auto" />
         </RouterLink>
+
         <div class="col-md-12" style="display: flex; justify-content: space-evenly">
           <q-toolbar v-for="link in links" :key="link.name">
             <RouterLink class="nav-link" :to="{ name: link.name }">
               {{ link.name }}
             </RouterLink>
+          </q-toolbar>
+          <q-toolbar>
+            <RouterLink class="navbar-brand" to="/logout"> Logout </RouterLink>
           </q-toolbar>
         </div>
       </div>
@@ -47,6 +54,9 @@
           <!-- </q-btn> -->
         </q-item>
       </q-list>
+      <q-item clickable v-ripple>
+        <RouterLink class="navbar-brand" to="/logout"> Logout </RouterLink>
+      </q-item>
     </q-drawer>
 
     <q-page-container>

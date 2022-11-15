@@ -33,7 +33,13 @@
       </div>
     </q-header>
 
-    <q-drawer v-model="leftDrawerOpen" side="left" overlay bordered>
+    <q-drawer
+      v-model="leftDrawerOpen"
+      side="left"
+      overlay
+      bordered
+      class="bg-light-green-10 text-white"
+    >
       <q-list
         bordered
         padding
@@ -41,7 +47,7 @@
         v-for="link in links"
         :key="link.name"
       >
-        <q-item clickable v-ripple>
+        <q-item clickable v-ripple align="center" class="text-white">
           <RouterLink class="nav-link" :to="link.to">
             {{ link.name }}
           </RouterLink>

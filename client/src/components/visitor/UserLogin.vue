@@ -80,10 +80,13 @@ const userOnlogin = () => {
     .post("/VisitorLogin", data)
     .then((response) => {
       if (response.data.length > 0) {
+        console.log(response.data);
         $q.localStorage.set("user", {
+          // "user" key from UserStore
           role: response.data[0].role,
           loginStatus: true,
         });
+        console.log(response.data[0].role);
 
         // UserStore.loginStatus = true;
         // UserStore.role = response.data[0].role;

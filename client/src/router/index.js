@@ -38,7 +38,7 @@ export default route(function (/* { store, ssrContext } */) {
   // const isAuthenticated = true;
   const UserStore = useUserStore();
 
-  if (!UserStore.loginStatus) {
+  if (!UserStore.loginStatus) { 
     console.log(UserStore.loginStatus);
     if (LocalStorage.getItem("user")) {
       UserStore.setUser({

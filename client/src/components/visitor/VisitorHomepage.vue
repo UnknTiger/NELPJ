@@ -26,8 +26,6 @@
     </q-carousel>
   </div>
 
-  <!-- Heavens Messages -->
-
   <div>
     <h1>Landing page</h1>
     <p class="">
@@ -39,20 +37,6 @@
     </p>
     <p class="fst-italic">Pope Urban VIII, 1623-1644:</p>
   </div>
-  <!-- Recent visits/Highlight of events; database from events-->
-  <div></div>
-  <!-- Foundations message -->
-  <div></div>
-  <!-- Filipino Visionaries -->
-  <div></div>
-
-  <!-- Foundations Peek of events; display right -->
-  <div></div>
-  <!-- Foundations random articles; display right -->
-  <div></div>
-  <!-- <RouterView /> -->
-
-  <!-- <NELPJFooter /> -->
 </template>
 
 <script setup>
