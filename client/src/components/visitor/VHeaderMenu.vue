@@ -1,13 +1,21 @@
 <template>
   <q-layout view="hHh lpR fff">
-    <q-header elevated class="bg-light-green-10 text-white" height-hint="98">
+    <q-header elevated class="bg-white" height-hint="98">
+      <!-- if screen is less than the medium screen -->
       <div
         class="row col-xs-12 items-center justify-center q-pa-none q-ma-none"
         v-if="$q.screen.lt.md"
       >
         <div class="col-xs-2">
           <q-toolbar>
-            <q-btn dense flat round icon="menu" size="xl" @click="toggleLeftDrawer" />
+            <q-btn
+              dense
+              flat
+              round
+              icon="menu"
+              size="xl"
+              @click="toggleLeftDrawer"
+            />
           </q-toolbar>
         </div>
         <div class="col-xs-10" style="margin-bottom: -10px">
@@ -16,11 +24,16 @@
           </RouterLink>
         </div>
       </div>
+
+      <!-- if screen is greater than the small screen -->
       <div class="row inline" v-if="$q.screen.gt.sm">
         <RouterLink class="navbar-brand" to="/">
           <img :src="imgPath" style="max-width: 100%; height: auto" />
         </RouterLink>
-        <div class="col-md-12" style="display: flex; justify-content: space-evenly">
+        <div
+          class="col-md-12"
+          style="display: flex; justify-content: space-evenly"
+        >
           <q-toolbar v-for="link in links" :key="link.name">
             <RouterLink class="nav-link" :to="{ name: link.name }">
               {{ link.name }}
@@ -58,13 +71,10 @@ import { onBeforeMount, ref } from "vue";
 import { useRoute, useRouter } from "vue-router";
 import { useCounterStore } from "../../stores/example-store.js";
 
-//declaring imported items
-// const route = useRoute();
+//declaring to use imported items
 const router = useRouter();
 // const counterStore = useCounterStore();
-//s
 const links = [];
-
 const routes = router.getRoutes();
 
 //loops all routes
@@ -117,16 +127,23 @@ function toggleLeftDrawer() {
 </script>
 
 <style>
-li {
+.nav-link {
   list-style-type: none;
-  font-weight: bolder;
+  font-family: Arial, Helvetica, sans-serif;
+  font-size: large;
   margin: 10px;
-  color: black;
+  color: #4f6228;
   float: left;
+  text-decoration: none;
 }
-nav li.a.router-link-active,
-nav li .router-link-exact-active {
-  color: darkgreen;
+.nav-link.a.router-link-active,
+.nav-link.router-link-exact-active {
+  font-size: larger;
+  color: #1e4620;
   font-weight: bolder;
+  text-decoration: dotted;
+}
+.col-xs-2 {
+  color: #4f6228;
 }
 </style>

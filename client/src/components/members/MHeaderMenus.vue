@@ -1,13 +1,21 @@
 <template>
   <q-layout view="hHh lpR fff">
-    <q-header elevated class="bg-light-green-10 text-white" height-hint="98">
+    <q-header elevated class="bg-white" height-hint="98">
+      <!-- if screen is less than the medium -->
       <div
         class="row col-xs-12 items-center justify-center q-pa-none q-ma-none"
         v-if="$q.screen.lt.md"
       >
         <div class="col-xs-2">
           <q-toolbar>
-            <q-btn dense flat round icon="menu" size="xl" @click="toggleLeftDrawer" />
+            <q-btn
+              dense
+              flat
+              round
+              icon="menu"
+              size="xl"
+              @click="toggleLeftDrawer"
+            />
           </q-toolbar>
         </div>
         <div class="col-xs-10" style="margin-bottom: -10px">
@@ -20,14 +28,17 @@
         <RouterLink class="navbar-brand" to="/">
           <img :src="imgPath" style="max-width: 100%; height: auto" />
         </RouterLink>
-        <div class="col-md-12" style="display: flex; justify-content: space-evenly">
+        <div
+          class="col-md-12"
+          style="display: flex; justify-content: space-evenly"
+        >
           <q-toolbar v-for="link in links" :key="link.name">
             <RouterLink class="nav-link" :to="{ name: link.name }">
               {{ link.name }}
             </RouterLink>
           </q-toolbar>
           <q-toolbar>
-            <RouterLink class="navbar-brand" to="/logout"> Logout </RouterLink>
+            <RouterLink class="nav-link" to="/logout"> Logout </RouterLink>
           </q-toolbar>
         </div>
       </div>
@@ -38,7 +49,7 @@
       side="left"
       overlay
       bordered
-      class="bg-light-green-10 text-white"
+      class="bg-white"
     >
       <q-list
         bordered
@@ -48,13 +59,13 @@
         :key="link.name"
       >
         <q-item clickable v-ripple align="center" class="text-white">
-          <RouterLink class="nav-link" :to="link.to">
+          <RouterLink class="nav-link" :to="link.name">
             {{ link.name }}
           </RouterLink>
         </q-item>
       </q-list>
       <q-item clickable v-ripple>
-        <RouterLink class="navbar-brand" to="/logout"> Logout </RouterLink>
+        <RouterLink class="nav-link" to="/logout"> Logout </RouterLink>
       </q-item>
       <!-- drawer content -->
     </q-drawer>
@@ -68,7 +79,6 @@
 import { onBeforeMount, ref } from "vue";
 //imports your routes from folder router/routes.
 import { useRoute, useRouter } from "vue-router";
-import UserLogout from "../generals/UserLogout.vue";
 
 const router = useRouter();
 const links = [];
@@ -121,16 +131,23 @@ function toggleLeftDrawer() {
 </script>
 
 <style>
-li {
+.nav-link {
   list-style-type: none;
-  font-weight: bolder;
+  font-family: Arial, Helvetica, sans-serif;
+  font-size: large;
   margin: 10px;
-  color: black;
+  color: #4f6228;
   float: left;
+  text-decoration: none;
 }
-nav li.a.router-link-active,
-nav li .router-link-exact-active {
-  color: darkgreen;
+.nav-link.a.router-link-active,
+.nav-link.router-link-exact-active {
+  font-size: larger;
+  color: #1e4620;
   font-weight: bolder;
+  text-decoration: dotted;
+}
+.col-xs-2 {
+  color: #4f6228;
 }
 </style>
