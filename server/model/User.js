@@ -24,21 +24,6 @@ export const insertUser = (data, result) => {
   })
 }
 
-// export const verifyUser = (data, result) => {
-//   const sql_stmt = 'SELECT * FROM login WHERE username = ? AND password = ?'
-
-//   db.query(sql_stmt, [data.username, data.password], (err, results) => {
-//     if (err) {
-//       console.log(err)
-//       result(err, null)
-//     } else {
-//       result(null, results)
-//       // (window.location.href =
-//       //   '../../client/src/components/members/MemberTemplate.vue')
-//     }
-//   })
-// }
-
 export const verifyUser = (data, result) => {
   const sql_stmt =
     'SELECT username as name, role FROM userlogin WHERE username = ? AND password = ?'
@@ -55,6 +40,18 @@ export const verifyUser = (data, result) => {
       result(null, results)
       // (window.location.href =
       //   '../../client/src/components/members/MemberTemplate.vue')
+    }
+  })
+}
+
+// Get All mysteries from table papal_mysteries
+export const getMysteries = (result) => {
+  db.query('SELECT * FROM papal_mysteries', (err, results) => {
+    if (err) {
+      console.log(err)
+      result(err, null)
+    } else {
+      result(null, results)
     }
   })
 }

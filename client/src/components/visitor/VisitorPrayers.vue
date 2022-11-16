@@ -1,4 +1,42 @@
 <template>
+  <!-- holy rosary in q-tabs -->
+  <div>
+    <h4>Papal</h4>
+    <q-splitter v-model="splitterModel" class="q-pa-md">
+      <template v-slot:before>
+        <q-tabs v-model="tab" vertical class="text-teal">
+          <q-tab
+            v-for="mystery in mysteries"
+            :label="mystery.mystery"
+            :name="mystery.name"
+            :key="mystery.id"
+          />
+        </q-tabs>
+      </template>
+      <template v-slot:after>
+        <q-tab-panels
+          v-model="tab"
+          animated
+          swipeable
+          vertical
+          transition-prev="jump-up"
+          transition-next="jump-up"
+        >
+          <q-tab-panel
+            v-for="mystery in mysteries"
+            :name="mystery.name"
+            :key="mystery.id"
+          >
+            <div class="text-h4 q-mb-md">{{ mystery.mystery }}</div>
+            <p>{{ mystery.desc }}</p>
+          </q-tab-panel>
+        </q-tab-panels>
+      </template>
+    </q-splitter>
+  </div>
+  <!-- holy rosary in q-tabs -->
+
+  <!-- holy rosary dialog button -->
   <div class="q-pa-md q-gutter-sm">
     <q-btn label="Holly Rosary" color="positive" @click="dialog = true" />
 
@@ -55,20 +93,59 @@
             </div>
           </div>
         </q-card-section>
-
-        <q-card-section>
-          <div class="row">
-            <p>Quick brown fox jumps over the lazy dog</p>
-          </div>
-        </q-card-section>
       </q-card>
     </q-dialog>
   </div>
 </template>
 <script setup>
 import { ref } from "vue";
+import { api } from "../../boot/axios.js";
+import { useRouter, useRoute } from "vue-router";
 
+const router = useRouter();
 const dialog = ref(false);
 const maximizedToggle = ref(true);
+const tab = ref();
+const splitterModel = ref(20);
+
+const mysteries = ref([]);
+//communitcating with the server
+// console.log(data);
+
+api
+  .get("/prayer")
+  .then((response) => {
+    if (response.data.length > 0) {
+      const data = response.data;
+      let i = 1;
+      console.log(data);
+      // mysteries.value = data;
+      data.forEach((index) => {
+        if (i == 1) tab.value = convertToSlug(index.mystery);
+        mysteries.value.push({
+          // id: index.id,
+          mystery: index.mystery,
+          name: convertToSlug(index.mystery),
+          desc: index.description,
+        });
+        i++;
+      });
+      console.log(mysteries);
+    }
+  })
+  .catch((err) => {
+    console.log("Error: (api cath)");
+    console.log(err);
+  });
+
+const convertToSlug = (string) => {
+  let slug = "";
+  slug = string.toLowerCase();
+  slug = slug.replace(/\s*$/g, "");
+
+  // Change whitespace to "-"
+  slug = slug.replace(/\s+/g, "-");
+  return slug;
+};
 </script>
 <style lang="scss"></style>

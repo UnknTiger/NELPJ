@@ -48,7 +48,6 @@ const UserStore = useUserStore();
 //variable declaration
 const username = ref(null);
 const password = ref(null);
-
 const Load = ref(false);
 
 // //onclick function
@@ -59,7 +58,7 @@ const Load = ref(false);
 //   counterStore.counter--;
 // };
 const userOnlogin = () => {
-  //getting values from form storing it to js variable
+  //getting values from form & storing it to js variable
   Load.value = true;
 
   const data = {
