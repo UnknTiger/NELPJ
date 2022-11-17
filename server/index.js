@@ -10,22 +10,26 @@ import ip from 'ip'
 // import routes
 import Router from './route/routes.js'
 
+// -----------custom imports
+import MenusPrayerRoutes from './route/MenusPrayerRoutes.js'
+// -----------custom imports
+
 const port = 5000
 
 // init express
 const app = express()
-
 // use express json
 app.use(express.json())
-
 // use cors
 app.use(cors())
-
 app.use(bodyParser.json())
 app.use(bodyParser.urlencoded({ extended: true }))
-
 // use router
 app.use(Router)
+
+// -----------custom use
+app.use(MenusPrayerRoutes)
+// -----------custom use
 
 app.listen(port, '0.0.0.0', () =>
   console.log(`Server running at ${ip.address() + ':' + port}`)

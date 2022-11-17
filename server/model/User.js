@@ -3,7 +3,7 @@ import db from '../config/database.js'
 
 // Get All Users
 export const getUsers = (result) => {
-  db.query('SELECT * FROM login', (err, results) => {
+  db.query('SELECT * FROM userlogin', (err, results) => {
     if (err) {
       console.log(err)
       result(err, null)
@@ -47,6 +47,18 @@ export const verifyUser = (data, result) => {
 // Get All mysteries from table papal_mysteries
 export const getMysteries = (result) => {
   db.query('SELECT * FROM papal_mysteries', (err, results) => {
+    if (err) {
+      console.log(err)
+      result(err, null)
+    } else {
+      result(null, results)
+    }
+  })
+}
+
+// Get All mysteries from table papal_mysteries
+export const getGetPrayerRosary = (result) => {
+  db.query('SELECT * FROM prayer_rosary', (err, results) => {
     if (err) {
       console.log(err)
       result(err, null)

@@ -8,6 +8,7 @@ import {
   showUsers,
   userLogin,
   mysteries,
+  prayerRosary,
 } from '../controller/UserController.js'
 
 // init express router
@@ -18,12 +19,7 @@ router.get('/users', showUsers)
 
 router.post('/VisitorLogin', userLogin)
 
-router.get('/prayer', mysteries)
-
-// router.post('/status', (req, res) => {
-//   var username = req.body.username
-//   var password = req.body.password
-//   res.send(`${username} . ${password}`)
-// })
+// router.get('/prayer', mysteries)
+// router.get('/prayer', prayerRosary)
 
 export default router

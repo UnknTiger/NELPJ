@@ -50,9 +50,20 @@ export const userLogin = (req, res) => {
   })
 }
 
-//get mysteries from papal_mysteries
+// get mysteries from papal_mysteries
 export const mysteries = (req, res) => {
   getMysteries((err, results) => {
+    if (err) {
+      res.send(err)
+    } else {
+      res.json(results)
+    }
+  })
+}
+
+// get mysteries from prayer_rosary
+export const prayerRosary = (req, res) => {
+  getGetPrayerRosary((err, results) => {
     if (err) {
       res.send(err)
     } else {

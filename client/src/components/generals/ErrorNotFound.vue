@@ -4,7 +4,7 @@
     <p class="text-center">Page not found</p>
 
     <div class="q-pa-md q-gutter-sm">
-      <q-btn @click="home" color="secondary" label="Go back to home" />
+      <q-btn @click="home" color="secondary" label="Go back home" />
     </div>
   </div>
 </template>
