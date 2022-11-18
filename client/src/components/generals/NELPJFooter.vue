@@ -1,12 +1,12 @@
 <template>
   <q-layout>
-    <q-footer elevated class="bg-grey-10 text-white">
+    <q-footer elevated class="bg-grey-12 text-black">
       <q-toolbar>
         <q-toolbar-title>
-          <!-- <q-avatar>
-            <img src="https://cdn.quasar.dev/logo-v2/svg/logo-mono-white.svg" />
-          </q-avatar> -->
-          <div align="center">© Copyright 2023 NELPJ. All rights reserved.</div>
+          <div align="center" class="text-black-h6">
+            © Copyright 2023 NELPJ. All rights reserved.
+          </div>
+          <div class="q-pa-sm"></div>
         </q-toolbar-title>
       </q-toolbar>
       <section align="center" class="grey-12" padding="10px">
@@ -18,7 +18,6 @@
             src="src/assets/footerImages/fblogo.png"
             width="40"
             height="40"
-            href="https://www.facebook.com/profile.php?id=100064466929007"
           />
         </RouterLink>
         <!-- Twitter -->

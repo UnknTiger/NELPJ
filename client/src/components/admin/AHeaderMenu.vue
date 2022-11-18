@@ -8,14 +8,7 @@
         <!-- Header for small screen -->
         <div class="col-xs-2">
           <q-toolbar>
-            <q-btn
-              dense
-              flat
-              round
-              icon="menu"
-              size="xl"
-              @click="toggleLeftDrawer"
-            />
+            <q-btn dense flat round icon="menu" size="xl" @click="toggleLeftDrawer" />
           </q-toolbar>
         </div>
         <div class="col-xs-10" style="margin-bottom: -10px">
@@ -31,10 +24,7 @@
           <img :src="imgPath" style="max-width: 100%; height: auto" />
         </RouterLink>
 
-        <div
-          class="col-md-12"
-          style="display: flex; justify-content: space-evenly"
-        >
+        <div class="col-md-12" style="display: flex; justify-content: space-evenly">
           <q-toolbar v-for="link in links" :key="link.name">
             <RouterLink class="nav-link" :to="{ name: link.name }">
               {{ link.name }}
@@ -47,21 +37,13 @@
       </div>
     </q-header>
 
-    <q-drawer
-      v-model="leftDrawerOpen"
-      side="left"
-      overlay
-      bordered
-      class="bg-white"
-    >
+    <q-drawer v-model="leftDrawerOpen" side="left" overlay bordered class="bg-white">
       <!-- drawer content -->
       <q-list bordered padding v-for="link in links" :key="link.name">
         <q-item clickable v-ripple align="center" class="text-white">
-          <!-- <q-btn > -->
           <RouterLink class="nav-link" :to="link.to">
             {{ link.name }}
           </RouterLink>
-          <!-- </q-btn> -->
         </q-item>
       </q-list>
       <q-item clickable v-ripple>
@@ -124,8 +106,8 @@ const resizeEvent = (e) => {
 
 const getImgPath = () => {
   return window.innerWidth >= 1024
-    ? "./src/assets/nelpj1920x150.png"
-    : "./src/assets/nelpj.png";
+    ? "../src/assets/nelpj1920x150.png"
+    : "../src/assets/nelpj.png";
 };
 
 window.addEventListener("resize", resizeEvent);

@@ -4,12 +4,12 @@
 import express from 'express'
 
 // import function from controller
-import { showUsers } from '../controller/UserController.js'
+// import { showUsers, userLogin } from '../controller/UserController.js'
 
 // init express router
-const router = express.Router()
+const MRoutes = express.Router()
 
-router.get('/users', showUsers)
+// router.get('/users', showUsers)
 // router.post('/VisitorLogin', userLogin)
 
 // router.post('/VisitorLogin', userLogin)
@@ -17,4 +17,4 @@ router.get('/users', showUsers)
 // router.get('/prayer', mysteries)
 // router.get('/prayer', prayerRosary)
 
-export default router
+export default MRoutes

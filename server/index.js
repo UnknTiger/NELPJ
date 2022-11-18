@@ -11,7 +11,10 @@ import ip from 'ip'
 import Router from './route/routes.js'
 
 // -----------custom imports
-import MenusPrayerRoutes from './route/MenusPrayerRoutes.js'
+
+import VRoutes from './route/VRoutes.js'
+import MRoutes from './route/MRoutes.js'
+import ARoutes from './route/ARoutes.js'
 // -----------custom imports
 
 const port = 5000
@@ -28,7 +31,11 @@ app.use(bodyParser.urlencoded({ extended: true }))
 app.use(Router)
 
 // -----------custom use
-app.use(MenusPrayerRoutes)
+
+app.use(VRoutes)
+app.use(MRoutes)
+app.use(ARoutes)
+
 // -----------custom use
 
 app.listen(port, '0.0.0.0', () =>

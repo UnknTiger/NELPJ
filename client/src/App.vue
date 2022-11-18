@@ -2,10 +2,14 @@
   <router-view />
 </template>
 
-<script>
+<script setup>
 import { defineComponent } from "vue";
 
-export default defineComponent({
-  name: "App",
-});
+const name = "App";
 </script>
+<style lang="scss">
+body {
+  // color: $red-1;
+  background-color: $light-green-3;
+}
+</style>
