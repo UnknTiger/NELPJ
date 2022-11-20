@@ -1,28 +1,74 @@
 <template>
-  <div>
-    <!-- <input v-model="username" placeholder="username" />
-    <input v-model="password" placeholder="password" /> -->
-    <q-input
-      v-model="username"
-      :loading="Load"
-      :disable="Load"
-      label="username"
-      name="username"
-    />
-    <q-input
-      v-model="password"
-      :loading="Load"
-      :disable="Load"
-      label="password"
-      name="pass"
-    />
-    <q-btn @click="userOnlogin" :loading="Load" :disable="Load">Login</q-btn>
+  <div
+    class="q-pa-none q-pa-sm justify-content-center"
+    style="max-width: 400px"
+  >
+    <q-card
+      align="center"
+      bordered
+      class="bg-greeen-6 my-card"
+      style="height: 478px"
+    >
+      <q-card-section class="q-ma-none q-pa-none">
+        <h4 class="text-h6 text-light-green-10" align="center">
+          NELPJ User Login
+        </h4>
+      </q-card-section>
 
-    <!-- <div>
-      {{ counterStore.counter }}
-      <q-btn @click="counterStore.increment()">+</q-btn>
-      <q-btn @click="counterStore.decrement()">-</q-btn>
-    </div> -->
+      <q-separator dark inset />
+
+      <q-card-section>
+        <q-form @submit="onSubmit" @reset="onReset" class="q-gutter-sm">
+          <div calss="q-ma-md">
+            <q-input
+              v-model="username"
+              :loading="Load"
+              :disable="Load"
+              label="Enter Username"
+              name="username"
+              filled
+              lazy-rules
+              :rules="[
+                (val) => (val && val.length > 0) || 'Please type something',
+              ]"
+            />
+
+            <q-input
+              v-model="password"
+              :loading="Load"
+              :disable="Load"
+              label="Enter Password"
+              name="pass"
+              filled
+              lazy-rules
+              :rules="[
+                (val) =>
+                  (val !== null && val !== '') ||
+                  'Please type your password correctly',
+              ]"
+            />
+          </div>
+          <div class="buttons">
+            <q-btn
+              label="Submit"
+              type="submit"
+              color="positive"
+              @click="userOnlogin"
+              :loading="Load"
+              :disable="Load"
+            />
+            <q-btn
+              label="Reset"
+              type="reset"
+              color="white"
+              text-color="light-green-10"
+              class="q-ml-sm"
+              @click="onReset"
+            />
+          </div>
+        </q-form>
+      </q-card-section>
+    </q-card>
   </div>
 </template>
 
@@ -35,28 +81,18 @@ import { useUserStore } from "../../stores/UserStore.js";
 import { useQuasar } from "quasar";
 
 const $q = useQuasar();
-// setTimeout(() => {
-//   $q.localStorage.remove("user");
-// }, 3000);
-
 const routes = useRoute();
 const router = useRouter();
 const UserStore = useUserStore();
-
-// console.log(counterStore.counter);
-
 //variable declaration
 const username = ref(null);
 const password = ref(null);
 const Load = ref(false);
 
-// //onclick function
-// const increment = () => {
-//   counterStore.counter++;
-// };
-// const decrement = () => {
-//   counterStore.counter--;
-// };
+function onReset() {
+  username.value = null;
+  password.value = null;
+}
 const userOnlogin = () => {
   //getting values from form & storing it to js variable
   Load.value = true;
@@ -65,18 +101,8 @@ const userOnlogin = () => {
     username: username.value,
     password: password.value,
   };
-  //communitcating with the server
-  // console.log(data);
-
-  // api.get("/member", data).then((response) => {
-  //   console.log(response.data);
-  //   router.push("/member");
-  // });
-
-  // export var isAuthenticated = false;
-
   api
-    .post("/VisitorLogin", data)
+    .post("/UserLogin", data)
     .then((response) => {
       if (response.data.length > 0) {
         console.log(response.data);
@@ -86,9 +112,6 @@ const userOnlogin = () => {
           loginStatus: true,
         });
         console.log(response.data[0].role);
-
-        // UserStore.loginStatus = true;
-        // UserStore.role = response.data[0].role;
 
         UserStore.setUser({ role: response.data[0].role, status: true });
 
@@ -104,9 +127,13 @@ const userOnlogin = () => {
       }
     })
     .catch((err) => {
-      console.log("error");
+      console.log("api call error");
       console.log(err);
     });
 };
 </script>
-<style></style>
+<style scoped>
+.buttons {
+  margin-top: 170px;
+}
+</style>
