@@ -77,16 +77,11 @@
                     (val !== null && val !== '') || 'Please type your message',
                 ]"  -->
               <p class="q-pa-sm text-light-green-10">
-                Note: Submitted testimonies will be verified by the
-                administrator before posting publicly.
+                Note: Submitted testimonies will be verified by the administrator before
+                posting publicly.
               </p>
               <div align="right">
-                <q-btn
-                  label="Submit"
-                  type="submit"
-                  color="positive"
-                  @click="onSubmit"
-                />
+                <q-btn label="Submit" type="submit" color="positive" @click="onSubmit" />
                 <q-btn
                   label="Reset"
                   type="reset"
@@ -114,8 +109,10 @@ const $q = useQuasar();
 const name = ref(null);
 const msg = ref(null);
 const testimonies = ref([]);
+const tab = ref();
 const accept = ref(false);
 
+//post testimony
 function onSubmit() {
   const data = {
     name: name.value,
@@ -134,21 +131,8 @@ function onSubmit() {
     });
   }
 }
-// api.post("/testimonials", data).catch((err) => {
-//   console.log("api call error");
-//   console.log(err);
-// });
-// }
-// if (accept.value !== true) {
-//   $q.notify({
-//     color: "green-4",
-//     textColor: "white",
-//     icon: "cloud_done",
-//     message: "Submitted",
-//   });
-// }
-// }
 
+//get testimonies
 api
   .get("/testimonials")
   .then((response) => {
@@ -170,8 +154,8 @@ api
     }
   })
   .catch((err) => {
-    console.log("Error: (api call; get)");
-    console.log(err);
+    console.log("Error: (api call; get)", err);
+    // console.log(err);
   });
 
 const convertToSlug = (string) => {
