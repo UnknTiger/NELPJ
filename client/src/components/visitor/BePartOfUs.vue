@@ -1,7 +1,7 @@
 <template>
-  <div class="col-8 q-pa-none q-pa-sm justify-content-center">
+  <div class="col-8 q-pa-sm">
     <q-card align="center" bordered class="bg-greeen-6 my-card">
-      <q-card-section class="q-ma-none q-pa-none">
+      <q-card-section>
         <h4 class="text-h6 text-light-green-10" align="center">
           NELPJ Membership Application form
         </h4>
@@ -9,10 +9,10 @@
 
       <!-- <q-separator dark inset /> -->
 
-      <q-card-section>
-        <q-form @submit="onSubmit" @reset="onReset" class="q-gutter-sm">
-          <div calss="q-ma-md">
-            <q-card-section class="col-4">
+      <q-card-section class="q-gutter-sm">
+        <q-form @submit="userRegister" @reset="onReset" class="q-gutter-sm">
+          <div calss="q-gutter-sm">
+            <q-card-section class="col-5">
               <p>User details</p>
               <q-input
                 v-model="lname"
@@ -126,9 +126,21 @@
                     (val !== null && val !== '') || 'Please type a valid email address',
                 ]"
               />
+              <q-select
+                filled
+                v-model="consecration"
+                :options="consecrationOption"
+                label="Have you done the 33 days preparation for total consecration?"
+                lazy-rules
+                :rules="[
+                  (val) =>
+                    (val !== null && val !== '') ||
+                    'Please answer the question yes or no',
+                ]"
+              />
             </q-card-section>
 
-            <q-card-section>
+            <q-card-section class="">
               <p>Career details</p>
               <q-input
                 v-model="job"
@@ -187,7 +199,7 @@
                 ]"
               />
             </q-card-section>
-            <q-card-section>
+            <!-- <q-card-section>
               <q-select
                 filled
                 v-model="consecration"
@@ -200,7 +212,7 @@
                     'Please answer the question yes or no',
                 ]"
               />
-            </q-card-section>
+            </q-card-section> -->
             <q-card-section>
               <p>NELPJ user credentials</p>
               <q-input
@@ -302,21 +314,47 @@ function onReset() {
   username.value = null;
   password.value = null;
 }
-const userOnlogin = () => {
+const userRegister = () => {
   //getting values from form & storing it to js variable
   Load.value = true;
 
   const data = {
+    fname: fname.value,
+    lname: lname.value,
+    mi: mi.value,
+    address: address.value,
+    age: age.value,
+    bday: bday.value,
+    contact: contact.value,
+    email: email.value,
+    job: job.value,
+    jobPosition: jobPostion.value,
+    jobAddress: jobAddress.value,
+    org: org.value,
+    consecration: consecration.value,
     username: username.value,
     password: password.value,
   };
   api
-    .post("/UserLogin", data)
+    .post("/bePartUs", data)
     .then((response) => {
       if (response.data.length > 0) {
         console.log(response.data);
       } else {
         Load.value = false;
+        fname.value = null;
+        lname.value = null;
+        mi.value = null;
+        address.value = null;
+        age.value = null;
+        bday.value = null;
+        contact.value = null;
+        email.value = null;
+        job.value = null;
+        jobPostion.value = null;
+        jobAddress.value = null;
+        org.value = null;
+        consecration.value = null;
         username.value = null;
         password.value = null;
       }

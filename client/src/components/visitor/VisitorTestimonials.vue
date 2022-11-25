@@ -21,20 +21,6 @@
             <p class="q-pt-md">"{{ testimony.msg }}"</p>
             <p class="text-right">~{{ testimony.name }}</p>
           </q-card-section>
-          <!-- <q-card-section class="q-pa-sm"> -->
-          <!-- <q-card-section class="q-pt-md">"{{ motto }}"</q-card-section>
-          <q-card-section class="text-right"> ~{{ myname }} </q-card-section>
-          <q-separator dark inset />
-
-          <q-card-section class="q-pt-sm">"{{ motto }}"</q-card-section>
-          <q-card-section class="text-right">~{{ myname }} </q-card-section>
-          <q-separator dark inset />
-
-          <q-card-section class="q-pt-sm"> {{ motto }}</q-card-section>
-          <q-card-section class="text-right"> ~{{ myname }} </q-card-section>
-          <q-separator dark inset /> -->
-
-          <!-- </q-card-section> -->
         </q-card>
       </q-card>
     </div>
@@ -145,7 +131,8 @@ api
         testimonies.value.push({
           // id: index.id,
           name: index.name,
-          name: convertToSlug(index.name),
+
+          // name: convertToSlug(index.name),
           msg: index.msg,
         });
         i++;
