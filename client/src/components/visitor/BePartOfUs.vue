@@ -248,7 +248,7 @@
               label="Submit"
               type="submit"
               color="positive"
-              @click="userOnlogin"
+              @click="userRegister"
               :loading="Load"
               :disable="Load"
             />
@@ -341,6 +341,18 @@ const userRegister = () => {
       if (response.data.length > 0) {
         console.log(response.data);
       } else {
+        const notif = $q.notify({
+          type: "ongoing",
+          message: "Saving information",
+        });
+        // simulate delay
+        setTimeout(() => {
+          notif({
+            type: "positive",
+            message: "Saved succesfully",
+            timeout: 1000,
+          });
+        }, 3000);
         Load.value = false;
         fname.value = null;
         lname.value = null;
@@ -371,7 +383,7 @@ const consecration = ref(null),
   consecrationOption = ref(["Yes", "No"]);
 </script>
 <style scoped>
-.buttons {
+/* .buttons {
   margin-top: 170px;
-}
+} */
 </style>

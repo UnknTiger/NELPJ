@@ -7,6 +7,7 @@ import {
 	getPrayerRosary,
 	insertTestimony,
 	getTestimony,
+	insertRegister,
 } from '../model/VQueries.js'
 
 export const userLogin = (req, res) => {
@@ -72,7 +73,27 @@ export const postTestimony = (req, res) => {
 
 export const postRegister = (req, res) => {
 	const data = {
-		name: req.body.name,
-		msg: req.body.msg,
+		lname: req.body.lname,
+		fname: req.body.fname,
+		mi: req.body.mi,
+		address: req.body.address,
+		gender: req.body.gender,
+		birthday: req.body.bday,
+		contact: req.body.contact,
+		email: req.body.fname,
+		consecration: req.body.consecration,
+		job: req.body.job,
+		job_position: req.body.jobPosition,
+		job_address: req.body.jobAddress,
+		affiliates: req.body.org,
+		username: req.body.username,
+		password: req.body.password,
 	}
+	insertRegister(data, (err, results) => {
+		if (err) {
+			res.send(err)
+		} else {
+			res.json(results)
+		}
+	})
 }
