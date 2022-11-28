@@ -79,3 +79,14 @@ export const insertRegister = (data, result) => {
 		}
 	})
 }
+
+export const getRegister = (result) => {
+	db.query('SELECT * FROM register', (err, results) => {
+		if (err) {
+			console.log(err)
+			result(err, null)
+		} else {
+			result(null, results)
+		}
+	})
+}

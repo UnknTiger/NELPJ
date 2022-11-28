@@ -1,4 +1,40 @@
 <template>
+  <div class="col-12 q-pa-md">
+    <q-card>
+      <q-card-section>
+        <h4 align="center">
+          YOU ARE INVITED To build the COMMUNITIES of the THE NEW EARTH OF LOVE PEACE &
+          JOY.
+        </h4>
+        <h6>WHY BELONG TO A COMMUNITY ?</h6>
+        <p>
+          1. Man is a social being by nature: Man needs a group of people who shares his
+          values with whom he can relate to freely and develop deep relationships. <br />
+          2. We belong to the mystical body of Christ and each of us must operate in the
+          place God has set for us, that is interdependent with other parts, <br />
+          3. Man's fallen nature needs the support of a Christian community to strengthen
+          us when we are weakened or fail. <br />
+          4. Jesus commands us to love and this finds expression in the community where
+          Christians belong. <br />
+          5. God the Father created us His children in His image and likeness, to fill the
+          earth and to conquer it. (Genesis 1: 27-28 : “27 God created man in His own
+          image; male and female He created them. 28 God blessed them; and God said to
+          them, “Be fruitful and multiply, and fill the earth, and conquer it.” )
+          <br /><br />
+          The New Earth of Love Peace and Joy communities will help you get back to your
+          original condition as a son of God through your Total Consecration to Jesus thru
+          Mary, and will empower you to transform your family, work, community, country
+          and the world thru works of love, restoring all things in Christ thru Mama Mary.
+          <br /><br />
+          “Dear people of God in the Philippines, go forth in the power of the Holy Spirit
+          to renew the face of the earth- your own world first... your families, your
+          communities, your nation... and the wider world of Asia,...; and the world
+          beyond, working through faith for the renewal of God's whole creation." -Blessed
+          Pope John Paul II, Jan. 15, 1995
+        </p>
+      </q-card-section>
+    </q-card>
+  </div>
   <div class="col-8 q-pa-sm">
     <q-card align="center" bordered class="bg-greeen-6 my-card">
       <q-card-section>
@@ -297,11 +333,17 @@ const username = ref(null);
 const password = ref(null);
 const Load = ref(false);
 
+const gender = ref(null),
+  options = ref(["Male", "Female"]);
+const consecration = ref(null),
+  consecrationOption = ref(["Yes", "No"]);
+
 function onReset() {
   fname.value = null;
   lname.value = null;
   mi.value = null;
   address.value = null;
+  gender.value = null;
   age.value = null;
   bday.value = null;
   contact.value = null;
@@ -323,6 +365,7 @@ const userRegister = () => {
     lname: lname.value,
     mi: mi.value,
     address: address.value,
+    gender: gender.value,
     age: age.value,
     bday: bday.value,
     contact: contact.value,
@@ -336,7 +379,7 @@ const userRegister = () => {
     password: password.value,
   };
   api
-    .post("/bePartUs", data)
+    .post("/bePartOfUs", data)
     .then((response) => {
       if (response.data.length > 0) {
         console.log(response.data);
@@ -352,7 +395,7 @@ const userRegister = () => {
             message: "Saved succesfully",
             timeout: 1000,
           });
-        }, 3000);
+        }, 1000);
         Load.value = false;
         fname.value = null;
         lname.value = null;
@@ -376,11 +419,6 @@ const userRegister = () => {
       console.log(err);
     });
 };
-
-const gender = ref(null),
-  options = ref(["Male", "Female"]);
-const consecration = ref(null),
-  consecrationOption = ref(["Yes", "No"]);
 </script>
 <style scoped>
 /* .buttons {

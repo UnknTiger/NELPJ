@@ -8,6 +8,7 @@ import {
 	insertTestimony,
 	getTestimony,
 	insertRegister,
+	getRegister,
 } from '../model/VQueries.js'
 
 export const userLogin = (req, res) => {
@@ -90,6 +91,16 @@ export const postRegister = (req, res) => {
 		password: req.body.password,
 	}
 	insertRegister(data, (err, results) => {
+		if (err) {
+			res.send(err)
+		} else {
+			res.json(results)
+		}
+	})
+}
+
+export const Register = (req, res) => {
+	getRegister((err, results) => {
 		if (err) {
 			res.send(err)
 		} else {

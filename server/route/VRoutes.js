@@ -10,6 +10,7 @@ import {
 	testimony,
 	postTestimony,
 	postRegister,
+	Register,
 } from '../controller/VController.js'
 
 // init express VRoutes
@@ -17,9 +18,12 @@ const VRoutes = express.Router()
 
 VRoutes.get('/prayer', mysteries)
 VRoutes.post('/UserLogin', userLogin)
+
 VRoutes.post('/testimonials', postTestimony)
 VRoutes.get('/testimonials', testimony)
-VRoutes.post('/bePartUs', postRegister)
+
+VRoutes.post('/bePartOfUs', postRegister)
+VRoutes.get('/bePartOfUs', Register)
 // VRoutes.get('/prayer', prayerRosary)
 
 export default VRoutes
