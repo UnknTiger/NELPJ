@@ -3,7 +3,8 @@ import { defineStore } from "pinia";
 export const useUserStore = defineStore("user", {
   state: () => ({
     name: "",
-    role: 0,
+    // role: 0,
+    role: 2,
     loginStatus: false,
   }),
   getters: {
@@ -20,7 +21,7 @@ export const useUserStore = defineStore("user", {
       this.name = data.name;
     },
     logout() {
-      this.role = 0;
+      this.role = 2;
       this.loginStatus = false;
     },
   },
