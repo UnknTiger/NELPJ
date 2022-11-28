@@ -1,5 +1,4 @@
 <template>
-  <!-- <q-layout> -->
   <q-footer elevated class="bg-grey-12 text-black">
     <q-toolbar>
       <q-toolbar-title>
@@ -52,5 +51,4 @@
       </RouterLink>
     </section>
   </q-footer>
-  <!-- </q-layout> -->
 </template>

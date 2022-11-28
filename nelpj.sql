@@ -113,7 +113,7 @@ CREATE TABLE `testimonies` (
   `id` int(11) NOT NULL,
   `name` text NOT NULL,
   `msg` text NOT NULL,
-  `date` date NOT NULL DEFAULT current_timestamp()
+  `date` timestamp NOT NULL DEFAULT current_timestamp()
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
 
 --

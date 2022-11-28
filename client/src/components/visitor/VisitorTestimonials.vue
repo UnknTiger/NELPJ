@@ -3,15 +3,16 @@
 <template>
   <!-- container style="overflow: auto; min-height: 1000px; max-height: 1000px"-->
 
-  <div class="row inline" style="width: 1400px">
+  <div class="row justify-between">
+    <!-- style="width: 1400px" -->
     <!-- sub-container1 -->
-    <div class="col-8 q-pa-none q-ma-sm">
-      <q-card class="q-pa-md">
+    <div class="col-md-8 col-sm-12 col-sx-12 q-pa-sm">
+      <q-card>
         <q-card
           flat
           bordered
           class="q-pt-md my-card"
-          style="overflow-y: scroll; height: 446px"
+          style="overflow-y: scroll; max-height: 75vh"
         >
           <q-card-section
             v-for="testimony in testimonies"
@@ -24,11 +25,12 @@
         </q-card>
       </q-card>
     </div>
-    <div class="flex-break"></div>
+    <!-- <div class="flex-break"></div> -->
 
     <!-- container2-->
-    <div class="col-4 q-pa-none q-pa-sm" style="max-width: 400px">
-      <q-card bordered class="bg-greeen-6 my-card" style="auto">
+    <div class="col-md-4 col-sm-12 col-sx-12 q-pa-sm">
+      <!-- style="width: 400px" -->
+      <q-card bordered class="bg-greeen-6 my-card">
         <q-card-section align="center">
           <div class="text-h6 text-light-green-10">Post a Public Testimony</div>
           <span class="text-light-green-10">Share your experience with us</span>
@@ -63,11 +65,16 @@
                     (val !== null && val !== '') || 'Please type your message',
                 ]"  -->
               <p class="q-pa-sm text-light-green-10">
-                Note: Submitted testimonies will be verified by the administrator before
-                posting publicly.
+                Note: Submitted testimonies will be verified by the
+                administrator before posting publicly.
               </p>
               <div align="right">
-                <q-btn label="Submit" type="submit" color="positive" @click="onSubmit" />
+                <q-btn
+                  label="Submit"
+                  type="submit"
+                  color="positive"
+                  @click="onSubmit"
+                />
                 <q-btn
                   label="Reset"
                   type="reset"

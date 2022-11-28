@@ -1,42 +1,101 @@
 <template>
-  <div class="col-12 q-pa-md">
-    <q-card>
+  <div class="col-12">
+    <q-card class="q-mb-md">
       <q-card-section>
         <h4 align="center">
-          YOU ARE INVITED To build the COMMUNITIES of the THE NEW EARTH OF LOVE PEACE &
-          JOY.
+          YOU ARE INVITED To build the COMMUNITIES of the THE NEW EARTH OF LOVE
+          PEACE & JOY.
         </h4>
         <h6>WHY BELONG TO A COMMUNITY ?</h6>
         <p>
-          1. Man is a social being by nature: Man needs a group of people who shares his
-          values with whom he can relate to freely and develop deep relationships. <br />
-          2. We belong to the mystical body of Christ and each of us must operate in the
-          place God has set for us, that is interdependent with other parts, <br />
-          3. Man's fallen nature needs the support of a Christian community to strengthen
-          us when we are weakened or fail. <br />
-          4. Jesus commands us to love and this finds expression in the community where
-          Christians belong. <br />
-          5. God the Father created us His children in His image and likeness, to fill the
-          earth and to conquer it. (Genesis 1: 27-28 : “27 God created man in His own
-          image; male and female He created them. 28 God blessed them; and God said to
-          them, “Be fruitful and multiply, and fill the earth, and conquer it.” )
+          1. Man is a social being by nature: Man needs a group of people who
+          shares his values with whom he can relate to freely and develop deep
+          relationships. <br />
+          2. We belong to the mystical body of Christ and each of us must
+          operate in the place God has set for us, that is interdependent with
+          other parts, <br />
+          3. Man's fallen nature needs the support of a Christian community to
+          strengthen us when we are weakened or fail. <br />
+          4. Jesus commands us to love and this finds expression in the
+          community where Christians belong. <br />
+          5. God the Father created us His children in His image and likeness,
+          to fill the earth and to conquer it. (Genesis 1: 27-28 : “27 God
+          created man in His own image; male and female He created them. 28 God
+          blessed them; and God said to them, “Be fruitful and multiply, and
+          fill the earth, and conquer it.” )
           <br /><br />
-          The New Earth of Love Peace and Joy communities will help you get back to your
-          original condition as a son of God through your Total Consecration to Jesus thru
-          Mary, and will empower you to transform your family, work, community, country
-          and the world thru works of love, restoring all things in Christ thru Mama Mary.
+          The New Earth of Love Peace and Joy communities will help you get back
+          to your original condition as a son of God through your Total
+          Consecration to Jesus thru Mary, and will empower you to transform
+          your family, work, community, country and the world thru works of
+          love, restoring all things in Christ thru Mama Mary.
           <br /><br />
-          “Dear people of God in the Philippines, go forth in the power of the Holy Spirit
-          to renew the face of the earth- your own world first... your families, your
-          communities, your nation... and the wider world of Asia,...; and the world
-          beyond, working through faith for the renewal of God's whole creation." -Blessed
-          Pope John Paul II, Jan. 15, 1995
+          “Dear people of God in the Philippines, go forth in the power of the
+          Holy Spirit to renew the face of the earth- your own world first...
+          your families, your communities, your nation... and the wider world of
+          Asia,...; and the world beyond, working through faith for the renewal
+          of God's whole creation." -Blessed Pope John Paul II, Jan. 15, 1995
         </p>
       </q-card-section>
     </q-card>
   </div>
-  <div class="col-8 q-pa-sm">
-    <q-card align="center" bordered class="bg-greeen-6 my-card">
+  <div class="col-8">
+    <q-card>
+      <q-stepper v-model="step" ref="stepper" color="primary" animated>
+        <q-step
+          :name="1"
+          title="Select campaign settings"
+          icon="settings"
+          :done="step > 1"
+        >
+          For each ad campaign that you create, you can control how much you're
+          willing to spend on clicks and conversions, which networks and
+          geographical locations you want your ads to show on, and more.
+        </q-step>
+
+        <q-step
+          :name="2"
+          title="Create an ad group"
+          caption="Optional"
+          icon="create_new_folder"
+          :done="step > 2"
+        >
+          An ad group contains one or more ads which target a shared set of
+          keywords.
+        </q-step>
+
+        <q-step :name="3" title="Ad template" icon="assignment">
+          This step won't show up because it is disabled.
+        </q-step>
+
+        <q-step :name="4" title="Create an ad" icon="add_comment">
+          Try out different ad text to see what brings in the most customers,
+          and learn how to enhance your ads using features like ad extensions.
+          If you run into any problems with your ads, find out how to tell if
+          they're running and how to resolve approval issues.
+        </q-step>
+
+        <template v-slot:navigation>
+          <q-stepper-navigation>
+            <q-btn
+              @click="stepperMethod({ action: 'go', ev: $refs })"
+              color="primary"
+              :label="step === 4 ? 'Finish' : 'Continue'"
+            />
+            <q-btn
+              v-if="step > 1"
+              flat
+              color="primary"
+              @click="stepperMethod({ action: 'back', ev: $refs })"
+              label="Back"
+              class="q-ml-sm"
+            />
+          </q-stepper-navigation>
+        </template>
+      </q-stepper>
+    </q-card>
+
+    <q-card align="center" bordered class="bg-greeen-6 my-car">
       <q-card-section>
         <h4 class="text-h6 text-light-green-10" align="center">
           NELPJ Membership Application form
@@ -59,7 +118,9 @@
                 filled
                 lazy-rules
                 :rules="[
-                  (val) => (val !== null && val !== '') || 'Please type a valid surname',
+                  (val) =>
+                    (val !== null && val !== '') ||
+                    'Please type a valid surname',
                 ]"
               />
               <q-input
@@ -70,7 +131,10 @@
                 name="fname"
                 filled
                 lazy-rules
-                :rules="[(val) => (val && val.length > 0) || 'Please type a valid name']"
+                :rules="[
+                  (val) =>
+                    (val && val.length > 0) || 'Please type a valid name',
+                ]"
               />
 
               <q-input
@@ -82,7 +146,8 @@
                 filled
                 lazy-rules
                 :rules="[
-                  (val) => (val !== null && val !== '') || 'Please type a valid name',
+                  (val) =>
+                    (val !== null && val !== '') || 'Please type a valid name',
                 ]"
               />
               <q-input
@@ -94,7 +159,9 @@
                 filled
                 lazy-rules
                 :rules="[
-                  (val) => (val !== null && val !== '') || 'Please type a valid address',
+                  (val) =>
+                    (val !== null && val !== '') ||
+                    'Please type a valid address',
                 ]"
               />
               <q-select
@@ -128,10 +195,12 @@
                 name="dday"
                 type="date"
                 filled
+                stack-label
                 lazy-rules
                 :rules="[
                   (val) =>
-                    (val !== null && val !== '') || 'Please type a valid birth date',
+                    (val !== null && val !== '') ||
+                    'Please type a valid birth date',
                 ]"
               />
               <q-input
@@ -145,7 +214,8 @@
                 lazy-rules
                 :rules="[
                   (val) =>
-                    (val !== null && val !== '') || 'Please type a valid contact number',
+                    (val !== null && val !== '') ||
+                    'Please type a valid contact number',
                 ]"
               />
               <q-input
@@ -159,7 +229,8 @@
                 lazy-rules
                 :rules="[
                   (val) =>
-                    (val !== null && val !== '') || 'Please type a valid email address',
+                    (val !== null && val !== '') ||
+                    'Please type a valid email address',
                 ]"
               />
               <q-select
@@ -188,7 +259,8 @@
                 lazy-rules
                 :rules="[
                   (val) =>
-                    (val !== null && val !== '') || 'Please type a valid occupation',
+                    (val !== null && val !== '') ||
+                    'Please type a valid occupation',
                 ]"
               />
               <q-input
@@ -260,7 +332,9 @@
                 filled
                 lazy-rules
                 :rules="[
-                  (val) => (val !== null && val !== '') || 'Please type a valid username',
+                  (val) =>
+                    (val !== null && val !== '') ||
+                    'Please type a valid username',
                 ]"
               />
               <q-input
@@ -273,7 +347,9 @@
                 filled
                 lazy-rules
                 :rules="[
-                  (val) => (val !== null && val !== '') || 'Please type a valid password',
+                  (val) =>
+                    (val !== null && val !== '') ||
+                    'Please type a valid password',
                 ]"
               />
             </q-card-section>
@@ -315,6 +391,7 @@ const $q = useQuasar();
 const routes = useRoute();
 const router = useRouter();
 const UserStore = useUserStore();
+const step = ref(1);
 //variable declaration
 const fname = ref(null);
 const lname = ref(null);
@@ -356,6 +433,12 @@ function onReset() {
   username.value = null;
   password.value = null;
 }
+
+const stepperMethod = ({ action, ev }) => {
+  if (action === "go") ev.stepper.next();
+  else ev.stepper.previous();
+};
+
 const userRegister = () => {
   //getting values from form & storing it to js variable
   Load.value = true;

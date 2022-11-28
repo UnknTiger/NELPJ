@@ -1,6 +1,16 @@
 <template>
-  <VHeaderMenu />
-  <GeneralFooter />
+  <q-layout view="hHh lpR fff">
+    <!-- Header -->
+    <VHeaderMenu />
+
+    <!-- Container -->
+    <q-page-container class="q-ma-md">
+      <router-view />
+    </q-page-container>
+
+    <!-- Footer -->
+    <GeneralFooter />
+  </q-layout>
 </template>
 <script setup>
 import VHeaderMenu from "./VHeaderMenu.vue";
