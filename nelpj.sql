@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Generation Time: Nov 25, 2022 at 03:42 AM
+-- Generation Time: Nov 28, 2022 at 08:36 AM
 -- Server version: 10.4.24-MariaDB
 -- PHP Version: 7.4.29
 
@@ -90,17 +90,18 @@ CREATE TABLE `register` (
   `affiliates` text NOT NULL,
   `username` varchar(100) NOT NULL,
   `password` varchar(100) NOT NULL,
-  `33day_consecration` varchar(5) NOT NULL
+  `consecration` varchar(5) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
 
 --
 -- Dumping data for table `register`
 --
 
-INSERT INTO `register` (`id`, `lname`, `fname`, `mi`, `gender`, `address`, `age`, `birthday`, `contact`, `email`, `job`, `job_position`, `job_address`, `affiliates`, `username`, `password`, `33day_consecration`) VALUES
+INSERT INTO `register` (`id`, `lname`, `fname`, `mi`, `gender`, `address`, `age`, `birthday`, `contact`, `email`, `job`, `job_position`, `job_address`, `affiliates`, `username`, `password`, `consecration`) VALUES
 (1, 'Anguit', 'Raeshelle Joy', 'S.', 'Female', 'Cadulang, Marigondon, Lapu-Lapu City, Cebu. ', 23, '1998-12-19', '09924317168', 'rae0anguit@gmail.com', 'Philippine President', 'Philippine President', 'Malacañang Palace', 'Government agencies', 'rae', 'rae', 'No'),
 (2, 'Berdin', 'Lazie', 'L.', 'Female', 'Babag II, Lapu-Lapu City, Cebu', 26, '1995-10-04', '09928618438', 'lazieberdin@gmail.com', 'IT Specialist', 'IT Specialist', 'Austin, Texas, United States', 'Cerner Corp, Aconex, Textura Corporation.', 'laz', 'laz', 'Yes'),
-(3, 'de los Santos', 'Mikee', 'T.', 'Female', 'Camolinas, ', 26, '1996-04-16', '09672415732', 'mikeedelossantos1434@gmail.com', 'Queen of England', 'Queen', 'Buckingham Palace', 'United Kingdom', 'mikee', 'mikee', 'Yes');
+(3, 'de los Santos', 'Mikee', 'T.', 'Female', 'Camolinas, ', 26, '1996-04-16', '09672415732', 'mikeedelossantos1434@gmail.com', 'Queen of England', 'Queen', 'Buckingham Palace', 'United Kingdom', 'mikee', 'mikee', 'Yes'),
+(4, 'Dela Cruz', 'Juan', 'D', 'Female', 'Endi nalista, Cebu City, Cebu.', 0, '2000-02-02', '121345678', 'Juan', 'Consultant', 'Consultant HR department', 'Endi nalista Cebu CIty, Cebu.', 'Google', 'juan', 'juan', 'Yes');
 
 -- --------------------------------------------------------
 
@@ -202,7 +203,7 @@ ALTER TABLE `prayer_rosary`
 -- AUTO_INCREMENT for table `register`
 --
 ALTER TABLE `register`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=4;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=5;
 
 --
 -- AUTO_INCREMENT for table `testimonies`
