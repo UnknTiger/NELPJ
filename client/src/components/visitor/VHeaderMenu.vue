@@ -8,14 +8,7 @@
     >
       <div class="col-xs-2">
         <q-toolbar>
-          <q-btn
-            dense
-            flat
-            round
-            icon="menu"
-            size="xl"
-            @click="toggleLeftDrawer"
-          />
+          <q-btn dense flat round icon="menu" size="xl" @click="toggleLeftDrawer" />
         </q-toolbar>
       </div>
       <div class="col-xs-10" style="margin-bottom: -10px">
@@ -30,10 +23,7 @@
       <RouterLink class="navbar-brand" to="/">
         <img :src="imgPath" style="max-width: 100%; height: auto" />
       </RouterLink>
-      <div
-        class="col-md-12"
-        style="display: flex; justify-content: space-evenly"
-      >
+      <div class="col-md-12" style="display: flex; justify-content: space-evenly">
         <q-toolbar v-for="link in links" :key="link.name" class="">
           <RouterLink class="nav-link" :to="{ name: link.name }">
             {{ link.name }}

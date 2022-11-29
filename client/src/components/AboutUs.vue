@@ -22,6 +22,12 @@
       </q-card>
     </div>
   </div>
+  <div class="outer">
+    <h3>Vue Teleport Example</h3>
+    <div>
+      <MyModal />
+    </div>
+  </div>
 </template>
 <script setup></script>
 

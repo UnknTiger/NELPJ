@@ -1,5 +1,7 @@
 <template>
-  <h1>Visitor materials page</h1>
+  <div></div>
 </template>
-<script></script>
-<style></style>
+
+<script setup></script>
+
+<style lang="scss" scoped></style>

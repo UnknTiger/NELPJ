@@ -1,10 +1,10 @@
 <template>
   <q-layout view="hHh lpR fff">
     <!-- Header -->
-    <!-- <VHeaderMenu /> -->
-    <GeneralMenus />
+    <VHeaderMenu />
+    <!-- <GeneralMenus /> -->
     <!-- Container -->
-    <q-page-container class="q-ma-md">
+    <q-page-container class="q-mx-md q-mt-md">
       <router-view />
     </q-page-container>
 
@@ -13,8 +13,8 @@
   </q-layout>
 </template>
 <script setup>
-import GeneralMenus from "../generals/GeneralMenus.vue";
-// import VHeaderMenu from "./VHeaderMenu.vue";
+// import GeneralMenus from "../generals/GeneralMenus.vue";
+import VHeaderMenu from "./VHeaderMenu.vue";
 import GeneralFooter from "../generals/NelpjFooter.vue";
 import { onBeforeMount, ref } from "vue";
 
