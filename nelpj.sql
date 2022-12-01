@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Generation Time: Nov 28, 2022 at 08:48 AM
+-- Generation Time: Dec 01, 2022 at 09:44 AM
 -- Server version: 10.4.24-MariaDB
 -- PHP Version: 7.4.29
 
@@ -20,6 +20,26 @@ SET time_zone = "+00:00";
 --
 -- Database: `nelpj`
 --
+
+-- --------------------------------------------------------
+
+--
+-- Table structure for table `deliverance_prayers`
+--
+
+CREATE TABLE `deliverance_prayers` (
+  `id` int(11) NOT NULL,
+  `title` varchar(500) NOT NULL,
+  `description` text NOT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
+
+--
+-- Dumping data for table `deliverance_prayers`
+--
+
+INSERT INTO `deliverance_prayers` (`id`, `title`, `description`) VALUES
+(1, 'Plenary Indulgence for Absolution', '“O my Jesus, You are the Light of the Earth. You are the Flame that touches all souls. Your Mercy and Love knows no bounds.We are not worthy of the Sacrifice You made by Your death on the Cross. Yet we know that Your Love for us is greater than the love we hold for You.\r\nGrant us, O Lord, the Gift of humility so that we are deserving of Your New Kingdom. Fill us with the Holy Spirit so we can march forth and lead Your Army to proclaim the Truth of Your Holy Word and prepare our brothers and sisters for the Glory of Your Second Coming on Earth. We honour You. We Praise You. We offer ourselves, our sorrows, our sufferings, as a gift to You, to save souls. We love You, Jesus. Have Mercy on all Your children, wherever they may be. Amen.”'),
+(2, 'Prayer to St. Michael the Archangel', 'St. Michael the Archangel, \r\ndefend us in battle. \r\nBe our defense against the wickedness and snares of the Devil. \r\nMay God rebuke him, we humbly pray, \r\nand do thou, \r\nO Prince of the heavenly hosts, \r\nby the power of God, \r\nthrust into hell Satan, \r\nand all the evil spirits, \r\nwho prowl about the world \r\nseeking the ruin of souls. Amen..');
 
 -- --------------------------------------------------------
 
@@ -62,7 +82,7 @@ CREATE TABLE `prayer_rosary` (
 INSERT INTO `prayer_rosary` (`id`, `title`, `description`) VALUES
 (1, 'The sign of the cross', 'In the name of the father, and of the son, and of the holy spirit. Amen'),
 (2, 'The Apostles\' Creed', 'I believe in God,\r\nthe Father almighty,\r\nCreator of heaven and earth,\r\nand in Jesus Christ, his only Son, our Lord. He was conceived by the Holy Spirit, and \r\nborn of the Virgin Mary.\r\nHe suffered under Pontius Pilate,\r\nwas crucified, died and was buried;\r\nHe descended to the dead. \r\nOn the third day he rose again from the dead;\r\nhe ascended into heaven,\r\nand is seated at the right hand of the father. He will come again to judge the living and the dead.\r\n\r\nI believe in the Holy Spirit,\r\nthe holy catholic Church,\r\nthe communion of saints,\r\nthe forgiveness of sins,\r\nthe resurrection of the body,\r\nand life everlasting.\r\nAmen.'),
-(3, 'The Our Father', 'Our Father, who art in heaven,\r\nhallowed be thy name;\r\nthy kingdom come;\r\nthy will be done on earth as it is in heaven.\r\nGive us this day our daily bread;\r\nand forgive us our trespasses\r\nas we forgive those who trespass\r\nagainst us;\r\nand lead us not into temptation,\r\nbut deliver us from evil.\r\nAmen'),
+(3, 'The Our Father', 'Our Father, who art in heaven,\nhallowed be thy name;\nthy kingdom come;\nthy will be done on earth as it is in heaven.\nGive us this day our daily bread;\nand forgive us our trespasses\nas we forgive those who trespass\nagainst us;\nand lead us not into temptation,\nbut deliver us from evil.\nAmen'),
 (4, 'The Hail Mary', 'Hail Mary, full of grace, the Lord is with thee;\r\nblessed art though among women,\r\nand blessed is the fruit of thy womb, Jesus.\r\nHoly Mary, Mother of God,\r\npray for us sinners\r\nnow and at the hour of our death.\r\nAmen.'),
 (5, 'The Glory Be To The Father', 'Glory be to the Father, the Son, and the Holy Spirit;\r\nas it was in the beginning, is now, and ever shall be,\r\nworld without end.\r\nAmen.'),
 (6, 'The Hail Holy Queen', 'Hail, holy Queen, mother of mercy,\r\nour life, our sweetness, and our hope.\r\nTo you we cry, poor banished children of Eve;\r\nto you we send up our sighs,\r\nmourning and weeping in this valley of tears.\r\nTurn, then, most gracious advocate,\r\nyour eyes of mercy toward us;\r\nand after this, our exile,\r\nshow unto us the blessed fruit of your womb, Jesus.\r\nO clement, O loving, O sweet Virgin Mary.');
@@ -101,7 +121,13 @@ INSERT INTO `register` (`id`, `lname`, `fname`, `mi`, `gender`, `address`, `age`
 (1, 'Anguit', 'Raeshelle Joy', 'S.', 'Female', 'Cadulang, Marigondon, Lapu-Lapu City, Cebu. ', 23, '1998-12-19', '09924317168', 'rae0anguit@gmail.com', 'Philippine President', 'Philippine President', 'Malacañang Palace', 'Government agencies', 'rae', 'rae', 'No'),
 (2, 'Berdin', 'Lazie', 'L.', 'Female', 'Babag II, Lapu-Lapu City, Cebu', 26, '1995-10-04', '09928618438', 'lazieberdin@gmail.com', 'IT Specialist', 'IT Specialist', 'Austin, Texas, United States', 'Cerner Corp, Aconex, Textura Corporation.', 'laz', 'laz', 'Yes'),
 (3, 'de los Santos', 'Mikee', 'T.', 'Female', 'Camolinas, ', 26, '1996-04-16', '09672415732', 'mikeedelossantos1434@gmail.com', 'Queen of England', 'Queen', 'Buckingham Palace', 'United Kingdom', 'mikee', 'mikee', 'Yes'),
-(4, 'Dela Cruz', 'Juan', 'D', 'Female', 'Endi nalista, Cebu City, Cebu.', 0, '2000-02-02', '121345678', 'Juan', 'Consultant', 'Consultant HR department', 'Endi nalista Cebu CIty, Cebu.', 'Google', 'juan', 'juan', 'Yes');
+(4, 'Dela Cruz', 'Juan', 'D', 'Female', 'Endi nalista, Cebu City, Cebu.', 0, '2000-02-02', '121345678', 'Juan', 'Consultant', 'Consultant HR department', 'Endi nalista Cebu CIty, Cebu.', 'Google', 'juan', 'juan', 'Yes'),
+(5, 'Baguio', 'Loina Mae', 'G', 'Female', 'Endi nalista, Cebu City, Cebu.', 0, '2001-02-02', '123456789', 'Loina Mae', 'Consultant', 'Consultant HR department', 'Endi nalista Cebu CIty, Cebu.', 'Google', 'loina', 'loina', 'No'),
+(6, 'ffa', 'Juan', 'D', 'Male', 'Endi nalista, Cebu City, Cebu.', 0, '2000-02-02', '45345338', 'Juan', 'Consultant', 'Consultant HR department', 'Endi nalista Cebu CIty, Cebu.', 'Google', 'user1', 'user1', 'Yes'),
+(7, 'he', 'wa ', 'el', 'Male', 'Endi nalista, Cebu City, Cebu.', 0, '2000-02-02', '123456789', 'wa ', 'Consultant', 'Consultant HR department', 'Endi nalista Cebu CIty, Cebu.', 'Google', 'wa', 'el', 'Yes'),
+(8, 'Dela Cruz', 'Juan', 'D', 'Male', 'Endi nalista, Cebu City, Cebu.', 0, '2000-02-02', '123456789', 'Juan', 'Consultant', 'Consultant HR department', 'Endi nalista Cebu CIty, Cebu.', 'Google', 'admin', 'dfg', 'No'),
+(9, 'Wa el hi', 'wa way', 'D', 'Male', 'dfswgg', 0, '2000-03-03', '1234556789', 'wa way', 'koijg', 'sdfg', '\';lkjhgfds', '\';lkjhgfds', 'user1', 'user1', 'No'),
+(10, 'Dela Cruz', 'Juan', 'D', 'Female', 'Endi nalista, Cebu City, Cebu.', 12, '2000-02-02', '12345678', 'Juan', 'Consultant', 'Consultant HR department', 'Endi nalista Cebu CIty, Cebu.', 'Google', 'user3', 'user33', 'No');
 
 -- --------------------------------------------------------
 
@@ -154,6 +180,12 @@ INSERT INTO `userlogin` (`id`, `username`, `password`, `role`) VALUES
 --
 
 --
+-- Indexes for table `deliverance_prayers`
+--
+ALTER TABLE `deliverance_prayers`
+  ADD PRIMARY KEY (`id`);
+
+--
 -- Indexes for table `papal_mysteries`
 --
 ALTER TABLE `papal_mysteries`
@@ -188,6 +220,12 @@ ALTER TABLE `userlogin`
 --
 
 --
+-- AUTO_INCREMENT for table `deliverance_prayers`
+--
+ALTER TABLE `deliverance_prayers`
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=3;
+
+--
 -- AUTO_INCREMENT for table `papal_mysteries`
 --
 ALTER TABLE `papal_mysteries`
@@ -203,13 +241,13 @@ ALTER TABLE `prayer_rosary`
 -- AUTO_INCREMENT for table `register`
 --
 ALTER TABLE `register`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=5;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=11;
 
 --
 -- AUTO_INCREMENT for table `testimonies`
 --
 ALTER TABLE `testimonies`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=8;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=18;
 
 --
 -- AUTO_INCREMENT for table `userlogin`
