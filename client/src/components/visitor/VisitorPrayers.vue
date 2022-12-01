@@ -1,13 +1,13 @@
 <template>
   <!-- holy rosary in q-tabs -->
-  <div class="q-pa-none q-ma-none" style="max-width: 2000px">
-    <q-card class="q-pa-none">
-      <h6 class="text-light-green-10 text-center q-pt-sm">
+  <div style="width: auto">
+    <q-card>
+      <h6 class="text-light-green-10 text-center text-bold q-pt-sm">
         Papal Reflections of the Mystery
       </h6>
 
       <div>
-        <q-splitter v-model="splitterModel" class="q-pa-sm">
+        <q-splitter v-model="splitterModel">
           <template v-slot:before>
             <q-tabs v-model="tab" vertical class="text-teal">
               <q-tab
@@ -41,11 +41,71 @@
           </template>
         </q-splitter>
       </div>
-      <!-- <PrayerRosary /> -->
-      <!-- holy rosary in q-tabs -->
+    </q-card>
 
-      <!-- holy rosary dialog button -->
-      <!-- <div class="q-pa-md q-gutter-sm">
+    <div class="q-pa-md" style="max-width: 350px">
+      <q-list bordered class="rounded-borders">
+        <q-expansion-item
+          expand-separator
+          icon="perm_identity"
+          :label="prayer4rosary.title"
+          caption="John Doe"
+        >
+          <q-card>
+            <q-card-section>
+              Lorem ipsum dolor sit amet, consectetur adipisicing elit. Quidem, eius
+              reprehenderit eos corrupti commodi magni quaerat ex numquam, dolorum
+              officiis modi facere maiores architecto suscipit iste eveniet doloribus
+              ullam aliquid.
+            </q-card-section>
+          </q-card>
+        </q-expansion-item>
+
+        <q-expansion-item expand-separator icon="signal_wifi_off" label="Wifi settings">
+          <q-card>
+            <q-card-section>
+              Lorem ipsum dolor sit amet, consectetur adipisicing elit. Quidem, eius
+              reprehenderit eos corrupti commodi magni quaerat ex numquam, dolorum
+              officiis modi facere maiores architecto suscipit iste eveniet doloribus
+              ullam aliquid.
+            </q-card-section>
+          </q-card>
+        </q-expansion-item>
+
+        <q-expansion-item
+          expand-separator
+          icon="drafts"
+          label="Drafts"
+          header-class="text-purple"
+        >
+          <q-card>
+            <q-card-section>
+              Lorem ipsum dolor sit amet, consectetur adipisicing elit. Quidem, eius
+              reprehenderit eos corrupti commodi magni quaerat ex numquam, dolorum
+              officiis modi facere maiores architecto suscipit iste eveniet doloribus
+              ullam aliquid.
+            </q-card-section>
+          </q-card>
+        </q-expansion-item>
+
+        <q-expansion-item icon="assessment" label="Disabled" disable>
+          <q-card>
+            <q-card-section>
+              Lorem ipsum dolor sit amet, consectetur adipisicing elit. Quidem, eius
+              reprehenderit eos corrupti commodi magni quaerat ex numquam, dolorum
+              officiis modi facere maiores architecto suscipit iste eveniet doloribus
+              ullam aliquid.
+            </q-card-section>
+          </q-card>
+        </q-expansion-item>
+      </q-list>
+    </div>
+
+    <!-- <PrayerRosary /> -->
+    <!-- holy rosary in q-tabs -->
+
+    <!-- holy rosary dialog button -->
+    <!-- <div class="q-pa-md q-gutter-sm">
         <q-btn label="Holly Rosary" color="positive" @click="dialog = true" />
 
         <q-dialog
@@ -102,7 +162,6 @@
           </q-card>
         </q-dialog>
       </div> -->
-    </q-card>
   </div>
 </template>
 <script setup>
@@ -139,6 +198,35 @@ api
         i++;
       });
       console.log(mysteries);
+    }
+  })
+  .catch((err) => {
+    console.log("Error: (api cath)");
+    console.log(err);
+  });
+
+const prayer4rosary = ref([]);
+
+//api call for prayers of the rosary
+api
+  .get("/prayer")
+  .then((response) => {
+    if (response.data.length > 0) {
+      const data4rosary = response.data;
+      let i = 1;
+      console.log(data4rosary);
+      // mysteries.value = data;
+      data4rosary.forEach((index) => {
+        if (i == 1) tab.value = convertToSlug(index.title);
+        prayer4rosary.value.push({
+          // id: index.id,
+          title: index.title,
+          title: convertToSlug(index.title),
+          desc: index.description,
+        });
+        i++;
+      });
+      console.log(prayer4rosary);
     }
   })
   .catch((err) => {

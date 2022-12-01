@@ -1,7 +1,5 @@
-<!-- @format -->
-
 <template>
-  <!-- container style="overflow: auto; min-height: 1000px; max-height: 1000px"-->
+  <div id="top"></div>
 
   <div class="row justify-between">
     <!-- style="width: 1400px" -->
@@ -11,7 +9,7 @@
         <q-card
           flat
           bordered
-          class="q-pt-md my-card"
+          class="q-pt-md my-card bg-light-green-10 text-white"
           style="overflow-y: scroll; max-height: 75vh"
         >
           <q-card-section
@@ -25,11 +23,77 @@
         </q-card>
       </q-card>
     </div>
-    <!-- <div class="flex-break"></div> -->
 
     <!-- container2-->
-    <div class="col-md-4 col-sm-12 col-sx-12 q-pa-sm">
-      <!-- style="width: 400px" -->
+    <teleport v-if="$q.screen.lt.md" to="#top">
+      <div class="col-md-4 col-sm-12 col-sx-12 q-pa-sm">
+        <q-card bordered class="bg-greeen-6 my-card">
+          <q-card-section align="center">
+            <div class="text-h6 text-light-green-10">Post a Public Testimony</div>
+            <span class="text-light-green-10">Share your experience with us</span>
+          </q-card-section>
+
+          <q-card-section>
+            <q-form @submit="onSubmit" @reset="onReset" class="q-gutter-sm">
+              <div>
+                <q-input
+                  class="q-ma-sm"
+                  filled
+                  v-model="name"
+                  label="Name/Organization"
+                  hint="e.g. (Mr. Juan Dela Cruz, CEO of Dela Cruz Corp.)"
+                  lazy-rules
+                  :rules="[(val) => (val && val.length > 0) || 'Please type something']"
+                />
+                <!-- lazy-rules
+                :rules="[
+                  (val) => (val && val.length > 0) || 'Please type something',
+                ]" -->
+                <q-input
+                  class="q-ma-sm"
+                  filled
+                  v-model="msg"
+                  label="Message"
+                  type="textarea"
+                  style="max-heigth: 200px"
+                  hint="Could be your personal experience"
+                  lazy-rules
+                  :rules="[
+                    (val) => (val !== null && val !== '') || 'Please type your message',
+                  ]"
+                />
+                <!--lazy-rules
+                :rules="[
+                  (val) =>
+                    (val !== null && val !== '') || 'Please type your message',
+                ]"  -->
+                <p class="q-pa-sm text-light-green-10">
+                  Note: Submitted testimonies will be verified by the administrator before
+                  posting publicly.
+                </p>
+                <div align="right">
+                  <q-btn
+                    label="Submit"
+                    type="submit"
+                    color="positive"
+                    @click="onSubmit"
+                  />
+                  <q-btn
+                    label="Reset"
+                    type="reset"
+                    color="white"
+                    text-color="light-green-10"
+                    class="q-ml-sm"
+                  />
+                </div>
+              </div>
+            </q-form>
+          </q-card-section>
+        </q-card>
+      </div>
+    </teleport>
+
+    <div v-else class="col-md-4 col-sm-12 col-sx-12 q-pa-sm">
       <q-card bordered class="bg-greeen-6 my-card">
         <q-card-section align="center">
           <div class="text-h6 text-light-green-10">Post a Public Testimony</div>
@@ -45,6 +109,8 @@
                 v-model="name"
                 label="Name/Organization"
                 hint="e.g. (Mr. Juan Dela Cruz, CEO of Dela Cruz Corp.)"
+                lazy-rules
+                :rules="[(val) => (val && val.length > 0) || 'Please type something']"
               />
               <!-- lazy-rules
                 :rules="[
@@ -58,6 +124,10 @@
                 type="textarea"
                 style="max-heigth: 200px"
                 hint="Could be your personal experience"
+                lazy-rules
+                :rules="[
+                  (val) => (val !== null && val !== '') || 'Please type your message',
+                ]"
               />
               <!--lazy-rules
                 :rules="[
@@ -65,16 +135,11 @@
                     (val !== null && val !== '') || 'Please type your message',
                 ]"  -->
               <p class="q-pa-sm text-light-green-10">
-                Note: Submitted testimonies will be verified by the
-                administrator before posting publicly.
+                Note: Submitted testimonies will be verified by the administrator before
+                posting publicly.
               </p>
               <div align="right">
-                <q-btn
-                  label="Submit"
-                  type="submit"
-                  color="positive"
-                  @click="onSubmit"
-                />
+                <q-btn label="Submit" type="submit" color="positive" @click="onSubmit" />
                 <q-btn
                   label="Reset"
                   type="reset"

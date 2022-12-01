@@ -11,12 +11,14 @@ import {
 	postTestimony,
 	postRegister,
 	Register,
+	prayerRosary,
 } from '../controller/VController.js'
 
 // init express VRoutes
 const VRoutes = express.Router()
 
 VRoutes.get('/prayer', mysteries)
+VRoutes.get('/prayer', prayerRosary)
 VRoutes.post('/UserLogin', userLogin)
 
 VRoutes.post('/testimonials', postTestimony)

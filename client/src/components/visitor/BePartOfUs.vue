@@ -1,7 +1,8 @@
 <template>
+  <div id="top"></div>
   <div class="col-12">
     <q-card class="q-mb-md">
-      <q-card-section>
+      <q-card-section class="bg-light-green-10 text-white">
         <h4 align="center">
           YOU ARE INVITED To build the COMMUNITIES of the THE NEW EARTH OF LOVE PEACE &
           JOY.
@@ -39,279 +40,276 @@
   <div class="col-12">
     <!-- stepper -->
     <q-card class="q-mb-md">
-      <q-form @submit="userRegister" @reset="onReset">
-        <q-stepper v-model="step" ref="stepper" color="positive" animated>
-          <!-- step 1: personal information -->
-          <q-step :name="1" title="Personal information" icon="face" :done="step > 1">
-            <div class="row">
-              <q-card-section class="col-md-6 col-sm-12 col-sx-12">
-                <q-input
-                  v-model="lname"
-                  :loading="Load"
-                  :disable="Load"
-                  label="Last name"
-                  name="lname"
-                  filled
-                  lazy-rules
-                  :rules="[
-                    (val) =>
-                      (val !== null && val !== '') || 'Please type a valid surname',
-                  ]"
-                />
-                <q-input
-                  v-model="fname"
-                  :loading="Load"
-                  :disable="Load"
-                  label="First name"
-                  name="fname"
-                  filled
-                  lazy-rules
-                  :rules="[
-                    (val) => (val && val.length > 0) || 'Please type a valid name',
-                  ]"
-                />
-                <q-input
-                  v-model="mi"
-                  :loading="Load"
-                  :disable="Load"
-                  label="Middle Initial"
-                  name="mi"
-                  filled
-                  lazy-rules
-                  :rules="[
-                    (val) => (val !== null && val !== '') || 'Please type a valid name',
-                  ]"
-                />
-                <q-input
-                  v-model="address"
-                  :loading="Load"
-                  :disable="Load"
-                  label="Address"
-                  name="address"
-                  filled
-                  lazy-rules
-                  :rules="[
-                    (val) =>
-                      (val !== null && val !== '') || 'Please type a valid address',
-                  ]"
-                />
-                <q-select
-                  filled
-                  v-model="gender"
-                  :options="options"
-                  label="Select gender"
-                />
-              </q-card-section>
+      <h4 style="padding-top: 20px" align="center" color="primary" class="text-blue">
+        Rheno Yagong
+      </h4>
+      <!-- <q-form @submit="userRegister" @reset="onReset"> -->
+      <q-stepper v-model="step" ref="stepper" color="positive" animated>
+        <!-- step 1: personal information -->
+        <q-step :name="1" title="Personal information" icon="face" :done="step > 1">
+          <div class="row">
+            <q-card-section class="col-md-6 col-sm-12 col-sx-12">
+              <q-input
+                v-model="lname"
+                :loading="Load"
+                :disable="Load"
+                label="Last name"
+                name="lname"
+                filled
+                lazy-rules
+                :rules="[
+                  (val) => (val !== null && val !== '') || 'Please type a valid surname',
+                ]"
+              />
+              <q-input
+                v-model="fname"
+                :loading="Load"
+                :disable="Load"
+                label="First name"
+                name="fname"
+                filled
+                lazy-rules
+                :rules="[(val) => (val && val.length > 0) || 'Please type a valid name']"
+              />
+              <q-input
+                v-model="mi"
+                :loading="Load"
+                :disable="Load"
+                label="Middle Initial"
+                name="mi"
+                filled
+                lazy-rules
+                :rules="[
+                  (val) => (val !== null && val !== '') || 'Please type a valid name',
+                ]"
+              />
+              <q-input
+                v-model="address"
+                :loading="Load"
+                :disable="Load"
+                label="Address"
+                name="address"
+                filled
+                lazy-rules
+                :rules="[
+                  (val) => (val !== null && val !== '') || 'Please type a valid address',
+                ]"
+              />
+              <q-select
+                filled
+                v-model="gender"
+                :options="options"
+                label="Select gender"
+              />
+            </q-card-section>
 
-              <q-card-section class="col-md-6 col-sm-12 col-sx-12">
-                <q-input
-                  v-model="age"
-                  :loading="Load"
-                  :disable="Load"
-                  label="Age"
-                  name="age"
-                  type="number"
-                  filled
-                  lazy-rules
-                  :rules="[
-                    (val) =>
-                      (val !== null && val !== '' && val < 100) ||
-                      'Please type your age correctly',
-                  ]"
-                />
-                <q-input
-                  v-model="bday"
-                  :loading="Load"
-                  :disable="Load"
-                  label="Birth Date"
-                  name="dday"
-                  type="date"
-                  filled
-                  stack-label
-                  lazy-rules
-                  :rules="[
-                    (val) =>
-                      (val !== null && val !== '') || 'Please type a valid birth date',
-                  ]"
-                />
-                <q-input
-                  v-model="contact"
-                  :loading="Load"
-                  :disable="Load"
-                  label="Contact number"
-                  name="contact"
-                  type="number"
-                  filled
-                  lazy-rules
-                  :rules="[
-                    (val) =>
-                      (val !== null && val !== '') ||
-                      'Please type a valid contact number',
-                  ]"
-                />
-                <q-input
-                  v-model="email"
-                  :loading="Load"
-                  :disable="Load"
-                  label="Email address"
-                  name="email"
-                  type="email"
-                  filled
-                  lazy-rules
-                  :rules="[
-                    (val) =>
-                      (val !== null && val !== '') || 'Please type a valid email address',
-                  ]"
-                />
-                <q-select
-                  filled
-                  v-model="consecration"
-                  :options="consecrationOption"
-                  label="Have you done the 33 days preparation for total consecration?"
-                  lazy-rules
-                  :rules="[
-                    (val) =>
-                      (val !== null && val !== '') ||
-                      'Please answer the question yes or no',
-                  ]"
-                />
-              </q-card-section>
+            <q-card-section class="col-md-6 col-sm-12 col-sx-12">
+              <q-input
+                v-model="age"
+                :loading="Load"
+                :disable="Load"
+                label="Age"
+                name="age"
+                type="number"
+                filled
+                lazy-rules
+                :rules="[
+                  (val) =>
+                    (val !== null && val !== '' && val < 100) ||
+                    'Please type your age correctly',
+                ]"
+              />
+              <q-input
+                v-model="bday"
+                :loading="Load"
+                :disable="Load"
+                label="Birth Date"
+                name="dday"
+                type="date"
+                filled
+                stack-label
+                lazy-rules
+                :rules="[
+                  (val) =>
+                    (val !== null && val !== '') || 'Please type a valid birth date',
+                ]"
+              />
+              <q-input
+                v-model="contact"
+                :loading="Load"
+                :disable="Load"
+                label="Contact number"
+                name="contact"
+                type="number"
+                filled
+                lazy-rules
+                :rules="[
+                  (val) =>
+                    (val !== null && val !== '') || 'Please type a valid contact number',
+                ]"
+              />
+              <q-input
+                v-model="email"
+                :loading="Load"
+                :disable="Load"
+                label="Email address"
+                name="email"
+                type="email"
+                filled
+                lazy-rules
+                :rules="[
+                  (val) =>
+                    (val !== null && val !== '') || 'Please type a valid email address',
+                ]"
+              />
+              <q-select
+                filled
+                v-model="consecration"
+                :options="consecrationOption"
+                label="Have you done the 33 days preparation for total consecration?"
+                lazy-rules
+                :rules="[
+                  (val) =>
+                    (val !== null && val !== '') ||
+                    'Please answer the question yes or no',
+                ]"
+              />
+            </q-card-section>
+          </div>
+        </q-step>
+
+        <!-- step 2: career information -->
+        <q-step :name="2" title="Career Details" icon="account_circle" :done="step > 2">
+          <q-card-section class="">
+            <q-input
+              v-model="job"
+              :loading="Load"
+              :disable="Load"
+              label="Occupation"
+              name="job"
+              filled
+              lazy-rules
+              :rules="[
+                (val) => (val !== null && val !== '') || 'Please type a valid occupation',
+              ]"
+            />
+            <q-input
+              v-model="jobPostion"
+              :loading="Load"
+              :disable="Load"
+              label="Occupation position"
+              name="jobPostion"
+              filled
+              lazy-rules
+              :rules="[
+                (val) =>
+                  (val !== null && val !== '') ||
+                  'Please type a valid occupation position',
+              ]"
+            />
+            <q-input
+              v-model="jobAddress"
+              :loading="Load"
+              :disable="Load"
+              label="Occupation address"
+              name="jobAddress"
+              filled
+              lazy-rules
+              :rules="[
+                (val) =>
+                  (val !== null && val !== '') ||
+                  'Please type a valid address of occupation',
+              ]"
+            />
+            <q-input
+              v-model="org"
+              :loading="Load"
+              :disable="Load"
+              label="Organization/Affilliation"
+              name="org"
+              hint="If you dont belong to any organization/affilliation please type n/a"
+              filled
+              lazy-rules
+              :rules="[
+                (val) =>
+                  (val !== null && val !== '') ||
+                  'Please enter a valid organization/affilliation.',
+              ]"
+            />
+          </q-card-section>
+        </q-step>
+        <!-- step 3: user credentials -->
+        <q-step :name="3" title="User Credentials" icon="article">
+          <q-card-section>
+            <q-input
+              v-model="username"
+              :loading="Load"
+              :disable="Load"
+              label="Username"
+              name="username"
+              filled
+              lazy-rules
+              :rules="[
+                (val) => (val !== null && val !== '') || 'Please type a valid username',
+              ]"
+            />
+            <q-input
+              v-model="password"
+              :loading="Load"
+              :disable="Load"
+              label="Password"
+              name="password"
+              type="password"
+              filled
+              lazy-rules
+              :rules="[
+                (val) => (val !== null && val !== '') || 'Please type a valid password',
+              ]"
+            />
+          </q-card-section>
+        </q-step>
+        <!-- navigation buttons -->
+        <template v-slot:navigation>
+          <q-stepper-navigation align="right">
+            <div v-if="step < 3">
+              <q-btn
+                @click="stepperMethod({ action: 'go', ev: $refs })"
+                color="positive"
+                label="Continue"
+              />
+              <!-- :label="step === 4 ? 'Finish' : 'Continue'" -->
+              <q-btn
+                v-if="step > 1"
+                flat
+                color="positive"
+                @click="stepperMethod({ action: 'back', ev: $refs })"
+                label="Back"
+                class="q-ml-sm"
+              />
             </div>
-          </q-step>
 
-          <!-- step 2: career information -->
-          <q-step :name="2" title="Career Details" icon="account_circle" :done="step > 2">
-            <q-card-section class="">
-              <q-input
-                v-model="job"
+            <div v-else>
+              <q-btn
+                label="Submit"
+                type="submit"
+                color="positive"
+                @click="userRegister"
                 :loading="Load"
                 :disable="Load"
-                label="Occupation"
-                name="job"
-                filled
-                lazy-rules
-                :rules="[
-                  (val) =>
-                    (val !== null && val !== '') || 'Please type a valid occupation',
-                ]"
               />
-              <q-input
-                v-model="jobPostion"
-                :loading="Load"
-                :disable="Load"
-                label="Occupation position"
-                name="jobPostion"
-                filled
-                lazy-rules
-                :rules="[
-                  (val) =>
-                    (val !== null && val !== '') ||
-                    'Please type a valid occupation position',
-                ]"
+              <q-btn
+                label="Reset"
+                type="reset"
+                color="white"
+                text-color="light-green-10"
+                class="q-ml-sm"
+                @click="onReset"
               />
-              <q-input
-                v-model="jobAddress"
-                :loading="Load"
-                :disable="Load"
-                label="Occupation address"
-                name="jobAddress"
-                filled
-                lazy-rules
-                :rules="[
-                  (val) =>
-                    (val !== null && val !== '') ||
-                    'Please type a valid address of occupation',
-                ]"
-              />
-              <q-input
-                v-model="org"
-                :loading="Load"
-                :disable="Load"
-                label="Organization/Affilliation"
-                name="org"
-                hint="If you dont belong to any organization/affilliation please type n/a"
-                filled
-                lazy-rules
-                :rules="[
-                  (val) =>
-                    (val !== null && val !== '') ||
-                    'Please enter a valid organization/affilliation.',
-                ]"
-              />
-            </q-card-section>
-          </q-step>
-          <!-- step 3: user credentials -->
-          <q-step :name="3" title="User Credentials" icon="article">
-            <q-card-section>
-              <q-input
-                v-model="username"
-                :loading="Load"
-                :disable="Load"
-                label="Username"
-                name="username"
-                filled
-                lazy-rules
-                :rules="[
-                  (val) => (val !== null && val !== '') || 'Please type a valid username',
-                ]"
-              />
-              <q-input
-                v-model="password"
-                :loading="Load"
-                :disable="Load"
-                label="Password"
-                name="password"
-                type="password"
-                filled
-                lazy-rules
-                :rules="[
-                  (val) => (val !== null && val !== '') || 'Please type a valid password',
-                ]"
-              />
-            </q-card-section>
-          </q-step>
-          <!-- navigation buttons -->
-          <template v-slot:navigation>
-            <q-stepper-navigation align="right">
-              <div v-if="step < 3">
-                <q-btn
-                  @click="stepperMethod({ action: 'go', ev: $refs })"
-                  color="positive"
-                  label="Continue"
-                />
-                <!-- :label="step === 4 ? 'Finish' : 'Continue'" -->
-                <q-btn
-                  v-if="step > 1"
-                  flat
-                  color="positive"
-                  @click="stepperMethod({ action: 'back', ev: $refs })"
-                  label="Back"
-                  class="q-ml-sm"
-                />
-              </div>
-
-              <div v-else>
-                <q-btn
-                  label="Submit"
-                  type="submit"
-                  color="positive"
-                  @click="userRegister"
-                  :loading="Load"
-                  :disable="Load"
-                />
-                <q-btn
-                  label="Reset"
-                  type="reset"
-                  color="white"
-                  text-color="light-green-10"
-                  class="q-ml-sm"
-                  @click="onReset"
-                />
-              </div>
-            </q-stepper-navigation>
-          </template>
-        </q-stepper>
-      </q-form>
+            </div>
+          </q-stepper-navigation>
+        </template>
+      </q-stepper>
+      <!-- </q-form> -->
     </q-card>
     <!-- stepper end-->
   </div>
