@@ -79,6 +79,7 @@ export const postRegister = (req, res) => {
 		mi: req.body.mi,
 		address: req.body.address,
 		gender: req.body.gender,
+		age: req.body.age,
 		birthday: req.body.bday,
 		contact: req.body.contact,
 		email: req.body.fname,

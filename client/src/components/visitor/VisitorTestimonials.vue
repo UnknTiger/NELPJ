@@ -4,7 +4,7 @@
   <div class="row justify-between">
     <!-- style="width: 1400px" -->
     <!-- sub-container1 -->
-    <div class="col-md-8 col-sm-12 col-sx-12 q-pa-sm">
+    <div class="col-md-8 col-sm-12 col-sx-12 q-pa-sm" id="testimonial">
       <q-card>
         <q-card
           flat
@@ -29,12 +29,8 @@
       <div class="col-md-4 col-sm-12 col-sx-12 q-pa-sm">
         <q-card bordered class="bg-greeen-6 my-card">
           <q-card-section align="center">
-            <div class="text-h6 text-light-green-10">
-              Post a Public Testimony
-            </div>
-            <span class="text-light-green-10"
-              >Share your experience with us</span
-            >
+            <div class="text-h6 text-light-green-10">Post a Public Testimony</div>
+            <span class="text-light-green-10">Share your experience with us</span>
           </q-card-section>
 
           <q-card-section>
@@ -47,9 +43,7 @@
                   label="Name/Organization"
                   hint="e.g. (Mr. Juan Dela Cruz, CEO of Dela Cruz Corp.)"
                   lazy-rules
-                  :rules="[
-                    (val) => (val && val.length > 0) || 'Please type something',
-                  ]"
+                  :rules="[(val) => (val && val.length > 0) || 'Please type something']"
                 />
                 <!-- lazy-rules
                 :rules="[
@@ -65,9 +59,7 @@
                   hint="Could be your personal experience"
                   lazy-rules
                   :rules="[
-                    (val) =>
-                      (val !== null && val !== '') ||
-                      'Please type your message',
+                    (val) => (val !== null && val !== '') || 'Please type your message',
                   ]"
                 />
                 <!--lazy-rules
@@ -76,16 +68,11 @@
                     (val !== null && val !== '') || 'Please type your message',
                 ]"  -->
                 <p class="q-pa-sm text-light-green-10">
-                  Note: Submitted testimonies will be verified by the
-                  administrator before posting publicly.
+                  Note: Submitted testimonies will be verified by the administrator before
+                  posting publicly.
                 </p>
                 <div align="right">
-                  <q-btn
-                    label="Submit"
-                    type="submit"
-                    color="positive"
-                    @click="onSubmit"
-                  />
+                  <q-btn label="Submit" type="submit" color="positive" />
                   <q-btn
                     label="Reset"
                     type="reset"
@@ -100,75 +87,6 @@
         </q-card>
       </div>
     </Teleport>
-
-    <!-- <div v-else class="col-md-4 col-sm-12 col-sx-12 q-pa-sm">
-      <q-card bordered class="bg-greeen-6 my-card">
-        <q-card-section align="center">
-          <div class="text-h6 text-light-green-10">Post a Public Testimony</div>
-          <span class="text-light-green-10">Share your experience with us</span>
-        </q-card-section>
-
-        <q-card-section>
-          <q-form @submit="onSubmit" @reset="onReset" class="q-gutter-sm">
-            <div>
-              <q-input
-                class="q-ma-sm"
-                filled
-                v-model="name"
-                label="Name/Organization"
-                hint="e.g. (Mr. Juan Dela Cruz, CEO of Dela Cruz Corp.)"
-                lazy-rules
-                :rules="[
-                  (val) => (val && val.length > 0) || 'Please type something',
-                ]"
-              />
-              lazy-rules
-                :rules="[
-                  (val) => (val && val.length > 0) || 'Please type something',
-                ]"
-              <q-input
-                class="q-ma-sm"
-                filled
-                v-model="msg"
-                label="Message"
-                type="textarea"
-                style="max-heigth: 200px"
-                hint="Could be your personal experience"
-                lazy-rules
-                :rules="[
-                  (val) =>
-                    (val !== null && val !== '') || 'Please type your message',
-                ]"
-              />
-              lazy-rules
-                :rules="[
-                  (val) =>
-                    (val !== null && val !== '') || 'Please type your message',
-                ]" 
-              <p class="q-pa-sm text-light-green-10">
-                Note: Submitted testimonies will be verified by the
-                administrator before posting publicly.
-              </p>
-              <div align="right">
-                <q-btn
-                  label="Submit"
-                  type="submit"
-                  color="positive"
-                  @click="onSubmit"
-                />
-                <q-btn
-                  label="Reset"
-                  type="reset"
-                  color="white"
-                  text-color="light-green-10"
-                  class="q-ml-sm"
-                />
-              </div>
-            </div>
-          </q-form>
-        </q-card-section>
-      </q-card>
-    </div> -->
   </div>
 
   <div></div>
@@ -189,7 +107,8 @@ const isMounted = ref(false);
 
 onMounted(() => {
   isMounted.value = true;
-  console.log("mounted");
+  getTestimonials();
+  // console.log("mounted");
 });
 
 //post testimony
@@ -199,10 +118,16 @@ function onSubmit() {
     msg: msg.value,
   };
   if (accept.value !== true) {
-    api.post("/testimonials", data).catch((err) => {
-      console.log("api call error");
-      console.log(err);
-    });
+    api
+      .post("/testimonials", data)
+      .then((response) => {
+        getTestimonials();
+        onReset();
+      })
+      .catch((err) => {
+        console.log("api call error");
+        console.log(err);
+      });
     $q.notify({
       color: "green-4",
       textColor: "white",
@@ -213,31 +138,32 @@ function onSubmit() {
 }
 
 //get testimonies
-api
-  .get("/testimonials")
-  .then((response) => {
-    if (response.data.length > 0) {
-      const data = response.data;
-      let i = 1;
-      console.log(data);
-      data.forEach((index) => {
-        if (i == 1) tab.value = convertToSlug(index.name);
-        testimonies.value.push({
-          // id: index.id,
-          name: index.name,
+const getTestimonials = async () => {
+  await api
+    .get("/testimonials")
+    .then((response) => {
+      if (response.data.length > 0) {
+        const data = response.data;
+        testimonies.value = [];
+        let i = 1;
+        // console.log(data);
+        data.forEach((index) => {
+          if (i == 1) tab.value = convertToSlug(index.name);
+          testimonies.value.push({
+            // id: index.id,
+            name: index.name,
 
-          // name: convertToSlug(index.name),
-          msg: index.msg,
+            msg: index.msg,
+          });
+          i++;
         });
-        i++;
-      });
-      console.log(testimonies);
-    }
-  })
-  .catch((err) => {
-    console.log("Error: (api call; get)", err);
-    // console.log(err);
-  });
+        // console.log(testimonies);
+      }
+    })
+    .catch((err) => {
+      console.log("Error: (api call; get)", err);
+    });
+};
 
 const convertToSlug = (string) => {
   let slug = "";
@@ -254,9 +180,9 @@ function onReset() {
   msg.value = null;
   accept.value = false;
 }
-
-const myname = "Rae";
-const motto =
-  "Quick brown fox jumps over the lazy dog. Lorem ipsum dolor sit amet, consectetur adipiscing elit. Donec viverra orci et sagittis luctus. Interdum et malesuada fames ac ante ipsum primis in faucibus. In augue nunc, placerat in arcu in, interdum facilisis ligula. Aenean convallis mollis ex, a convallis enim condimentum eu. Fusce molestie erat at purus facilisis, eu imperdiet orci elementum. Duis sed diam vel ipsum imperdiet vehicula in et purus. Etiam tincidunt justo nunc, quis congue nibh tempus et. Proin elementum turpis eu malesuada porta. Vivamus sodales metus arcu, eu cursus metus sodales id. Sed sodales tortor et libero tristique, eu varius dui aliquet. Vivamus a eros ut turpis feugiat elementum. Integer facilisis libero a egestas rutrum. Etiam finibus finibus metus a volutpat.";
 </script>
-<style></style>
+<style scoped>
+#testimonial {
+  font-size: medium;
+}
+</style>

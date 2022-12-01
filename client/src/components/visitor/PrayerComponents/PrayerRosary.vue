@@ -1,92 +1,61 @@
 <template>
-  <div class="q-pa-sm q-ma-none" style="max-width: 2000px">
-    <q-card class="q-pa-none">
-      <h6 class="text-light-green-10 text-center q-pt-sm">Prayers of the rosary</h6>
-
-      <div>
-        <q-splitter v-model="splitterModel" class="q-pa-sm">
-          <template v-slot:before>
-            <q-tabs v-model="tab" vertical class="text-teal">
-              <q-tab
-                v-for="rosary in PrayerRosary"
-                :label="rosary.rosary"
-                :name="rosary.name"
-                :key="rosary.id"
-              />
-            </q-tabs>
-          </template>
-          <template v-slot:after>
-            <q-tab-panels
-              v-model="tab"
-              animated
-              swipeable
-              vertical
-              transition-prev="jump-up"
-              transition-next="jump-up"
-            >
-              <q-tab-panel
-                v-for="rosary in PrayerRosary"
-                :name="rosary.name"
-                :key="rosary.id"
-              >
-                <div class="text-h6 q-mb-md">{{ rosary.rosary }}</div>
-                <p>{{ rosary.desc }}</p>
-              </q-tab-panel>
-            </q-tab-panels>
-          </template>
-        </q-splitter>
-      </div>
-    </q-card>
+  <div><h6>Materials page</h6></div>
+  <!-- <teleport to="prayerRosary"> -->
+  <div class="q-pa-md" style="max-width: 350px">
+    <q-list bordered class="rounded-borders">
+      <q-expansion-item
+        v-for="prayer in prayer4rosary"
+        :name="prayer.name"
+        :key="prayer.id"
+        expand-separator
+        icon="description"
+        :label="prayer.title"
+        header-class="text-light-green-10 bg-white"
+      >
+        <q-card>
+          <q-card-section>
+            {{ prayer.desc }}
+          </q-card-section>
+        </q-card>
+      </q-expansion-item>
+    </q-list>
   </div>
+  <!-- </teleport> -->
 </template>
 
 <script setup>
 import { ref } from "vue";
-import { api } from "../../../boot/axios.js";
-import { useRouter, useRoute } from "vue-router";
+import { api } from "../../boot/axios.js";
 
-const router = useRouter();
-const dialog = ref(false);
 const tab = ref();
-const splitterModel = ref(20);
+const prayer4rosary = ref([]);
+//communitcating with the server
 
-const PrayerRosary = ref([]);
-
+//api call for papal prayer4rosary
 api
-  .get("/prayer")
+  .get("/materials")
   .then((response) => {
     if (response.data.length > 0) {
       const data = response.data;
       let i = 1;
       console.log(data);
-      // PrayerRosary.value = data;
+
       data.forEach((index) => {
-        if (i == 1) tab.value = convertToSlug(index.rosary);
-        PrayerRosary.value.push({
-          // id: index.id,
-          rosary: index.rosary,
-          name: convertToSlug(index.rosary),
+        index.title;
+        prayer4rosary.value.push({
+          title: index.title,
+
           desc: index.description,
         });
         i++;
       });
-      console.log(PrayerRosary);
+      console.log(prayer4rosary);
     }
   })
   .catch((err) => {
     console.log("Error: (api cath)");
     console.log(err);
   });
-
-const convertToSlug = (string) => {
-  let slug = "";
-  slug = string.toLowerCase();
-  slug = slug.replace(/\s*$/g, "");
-
-  // Change whitespace to "-"
-  slug = slug.replace(/\s+/g, "-");
-  return slug;
-};
 </script>
 
 <style lang="scss" scoped></style>

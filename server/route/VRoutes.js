@@ -18,7 +18,7 @@ import {
 const VRoutes = express.Router()
 
 VRoutes.get('/prayer', mysteries)
-VRoutes.get('/prayer', prayerRosary)
+VRoutes.get('/materials', prayerRosary)
 VRoutes.post('/UserLogin', userLogin)
 
 VRoutes.post('/testimonials', postTestimony)

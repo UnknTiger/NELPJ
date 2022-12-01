@@ -17,7 +17,7 @@
     <!-- contaier2 -->
     <div class="col-6 q-pa-sm" align="center">
       <q-card class="q-pa-sm">
-        <q-card-serction><p>directors corner</p></q-card-serction>
+        <q-card-section><p>directors corner</p></q-card-section>
         <img class="drtImg" src="" alt="this is an image" align="left" />
       </q-card>
     </div>

@@ -115,7 +115,7 @@
                 lazy-rules
                 :rules="[
                   (val) =>
-                    (val !== null && val !== '' && val < 100) ||
+                    (val !== null && val !== '' && val < 200) ||
                     'Please type your age correctly',
                 ]"
               />
@@ -319,14 +319,9 @@
 //ref for freactivity
 import { ref } from "vue";
 import { api } from "../../boot/axios.js";
-import { useRouter, useRoute } from "vue-router";
-import { useUserStore } from "../../stores/UserStore.js";
 import { useQuasar } from "quasar";
 
 const $q = useQuasar();
-const routes = useRoute();
-const router = useRouter();
-const UserStore = useUserStore();
 const step = ref(1);
 //variable declaration
 const fname = ref(null);
