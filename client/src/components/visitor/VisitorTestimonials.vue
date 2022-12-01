@@ -1,5 +1,5 @@
 <template>
-  <div id="top"></div>
+  <div id="top" />
 
   <div class="row justify-between">
     <!-- style="width: 1400px" -->
@@ -25,12 +25,16 @@
     </div>
 
     <!-- container2-->
-    <teleport v-if="$q.screen.lt.md" to="#top">
+    <Teleport to="#top" :disabled="$q.screen.gt.sm" v-if="isMounted">
       <div class="col-md-4 col-sm-12 col-sx-12 q-pa-sm">
         <q-card bordered class="bg-greeen-6 my-card">
           <q-card-section align="center">
-            <div class="text-h6 text-light-green-10">Post a Public Testimony</div>
-            <span class="text-light-green-10">Share your experience with us</span>
+            <div class="text-h6 text-light-green-10">
+              Post a Public Testimony
+            </div>
+            <span class="text-light-green-10"
+              >Share your experience with us</span
+            >
           </q-card-section>
 
           <q-card-section>
@@ -43,7 +47,9 @@
                   label="Name/Organization"
                   hint="e.g. (Mr. Juan Dela Cruz, CEO of Dela Cruz Corp.)"
                   lazy-rules
-                  :rules="[(val) => (val && val.length > 0) || 'Please type something']"
+                  :rules="[
+                    (val) => (val && val.length > 0) || 'Please type something',
+                  ]"
                 />
                 <!-- lazy-rules
                 :rules="[
@@ -59,7 +65,9 @@
                   hint="Could be your personal experience"
                   lazy-rules
                   :rules="[
-                    (val) => (val !== null && val !== '') || 'Please type your message',
+                    (val) =>
+                      (val !== null && val !== '') ||
+                      'Please type your message',
                   ]"
                 />
                 <!--lazy-rules
@@ -68,8 +76,8 @@
                     (val !== null && val !== '') || 'Please type your message',
                 ]"  -->
                 <p class="q-pa-sm text-light-green-10">
-                  Note: Submitted testimonies will be verified by the administrator before
-                  posting publicly.
+                  Note: Submitted testimonies will be verified by the
+                  administrator before posting publicly.
                 </p>
                 <div align="right">
                   <q-btn
@@ -91,9 +99,9 @@
           </q-card-section>
         </q-card>
       </div>
-    </teleport>
+    </Teleport>
 
-    <div v-else class="col-md-4 col-sm-12 col-sx-12 q-pa-sm">
+    <!-- <div v-else class="col-md-4 col-sm-12 col-sx-12 q-pa-sm">
       <q-card bordered class="bg-greeen-6 my-card">
         <q-card-section align="center">
           <div class="text-h6 text-light-green-10">Post a Public Testimony</div>
@@ -110,12 +118,14 @@
                 label="Name/Organization"
                 hint="e.g. (Mr. Juan Dela Cruz, CEO of Dela Cruz Corp.)"
                 lazy-rules
-                :rules="[(val) => (val && val.length > 0) || 'Please type something']"
-              />
-              <!-- lazy-rules
                 :rules="[
                   (val) => (val && val.length > 0) || 'Please type something',
-                ]" -->
+                ]"
+              />
+              lazy-rules
+                :rules="[
+                  (val) => (val && val.length > 0) || 'Please type something',
+                ]"
               <q-input
                 class="q-ma-sm"
                 filled
@@ -126,20 +136,26 @@
                 hint="Could be your personal experience"
                 lazy-rules
                 :rules="[
-                  (val) => (val !== null && val !== '') || 'Please type your message',
+                  (val) =>
+                    (val !== null && val !== '') || 'Please type your message',
                 ]"
               />
-              <!--lazy-rules
+              lazy-rules
                 :rules="[
                   (val) =>
                     (val !== null && val !== '') || 'Please type your message',
-                ]"  -->
+                ]" 
               <p class="q-pa-sm text-light-green-10">
-                Note: Submitted testimonies will be verified by the administrator before
-                posting publicly.
+                Note: Submitted testimonies will be verified by the
+                administrator before posting publicly.
               </p>
               <div align="right">
-                <q-btn label="Submit" type="submit" color="positive" @click="onSubmit" />
+                <q-btn
+                  label="Submit"
+                  type="submit"
+                  color="positive"
+                  @click="onSubmit"
+                />
                 <q-btn
                   label="Reset"
                   type="reset"
@@ -152,14 +168,14 @@
           </q-form>
         </q-card-section>
       </q-card>
-    </div>
+    </div> -->
   </div>
 
   <div></div>
 </template>
 <script setup>
 import { useQuasar } from "quasar";
-import { ref } from "vue";
+import { onMounted, ref, Teleport } from "vue";
 import { api } from "../../boot/axios.js";
 
 const $q = useQuasar();
@@ -169,6 +185,12 @@ const msg = ref(null);
 const testimonies = ref([]);
 const tab = ref();
 const accept = ref(false);
+const isMounted = ref(false);
+
+onMounted(() => {
+  isMounted.value = true;
+  console.log("mounted");
+});
 
 //post testimony
 function onSubmit() {
