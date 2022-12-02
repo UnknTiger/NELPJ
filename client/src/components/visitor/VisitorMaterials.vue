@@ -83,6 +83,8 @@ const qtab = ref("mails");
 
 function showDesc() {
   $q.dialog({
+    // prayer4rosary: this.prayer4rosary,
+
     title: "some random message",
     message: "Some message",
   });

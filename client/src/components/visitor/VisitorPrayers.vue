@@ -41,9 +41,10 @@
           </q-tab-panels>
         </template>
       </q-splitter>
-      <!-- <PrayerRosary /> -->
     </div>
   </q-card>
+
+  <DeliverancePrayerVue />
 
   <!-- <PrayerRosary /> -->
   <!-- holy rosary in q-tabs -->
@@ -108,6 +109,7 @@
       </div> -->
 </template>
 <script setup>
+import DeliverancePrayerVue from "./PrayerComponents/DeliverancePrayer.vue";
 import { ref } from "vue";
 import { api } from "../../boot/axios.js";
 // import PrayerRosary from "../visitor/PrayerComponents/PrayerRosary.vue";
