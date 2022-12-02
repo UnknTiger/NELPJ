@@ -1,6 +1,6 @@
 <template>
   <!-- holy rosary in q-tabs -->
-  <div id="prayerRosary"></div>
+  <DeliverancePrayerVue />
 
   <q-card class="q-pb-md">
     <h6 class="text-light-green-10 text-center text-bold q-pt-sm">
@@ -44,7 +44,7 @@
     </div>
   </q-card>
 
-  <DeliverancePrayerVue />
+  <!-- <DeliverancePrayerVue /> -->
 
   <!-- <PrayerRosary /> -->
   <!-- holy rosary in q-tabs -->
