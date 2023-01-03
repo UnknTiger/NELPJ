@@ -4,34 +4,38 @@
     <q-card class="q-mb-md">
       <q-card-section class="bg-light-green-10 text-white">
         <h4 align="center">
-          YOU ARE INVITED To build the COMMUNITIES of the THE NEW EARTH OF LOVE PEACE &
-          JOY.
+          YOU ARE INVITED To build the COMMUNITIES of the THE NEW EARTH OF LOVE
+          PEACE & JOY.
         </h4>
         <h6>WHY BELONG TO A COMMUNITY ?</h6>
-        <p>
-          1. Man is a social being by nature: Man needs a group of people who shares his
-          values with whom he can relate to freely and develop deep relationships. <br />
-          2. We belong to the mystical body of Christ and each of us must operate in the
-          place God has set for us, that is interdependent with other parts, <br />
-          3. Man's fallen nature needs the support of a Christian community to strengthen
-          us when we are weakened or fail. <br />
-          4. Jesus commands us to love and this finds expression in the community where
-          Christians belong. <br />
-          5. God the Father created us His children in His image and likeness, to fill the
-          earth and to conquer it. (Genesis 1: 27-28 : “27 God created man in His own
-          image; male and female He created them. 28 God blessed them; and God said to
-          them, “Be fruitful and multiply, and fill the earth, and conquer it.” )
+        <p class="text-body1">
+          1. Man is a social being by nature: Man needs a group of people who
+          shares his values with whom he can relate to freely and develop deep
+          relationships. <br />
+          2. We belong to the mystical body of Christ and each of us must
+          operate in the place God has set for us, that is interdependent with
+          other parts, <br />
+          3. Man's fallen nature needs the support of a Christian community to
+          strengthen us when we are weakened or fail. <br />
+          4. Jesus commands us to love and this finds expression in the
+          community where Christians belong. <br />
+          5. God the Father created us His children in His image and likeness,
+          to fill the earth and to conquer it. (Genesis 1: 27-28 : “27 God
+          created man in His own image; male and female He created them. 28 God
+          blessed them; and God said to them, “Be fruitful and multiply, and
+          fill the earth, and conquer it.” )
           <br /><br />
-          The New Earth of Love Peace and Joy communities will help you get back to your
-          original condition as a son of God through your Total Consecration to Jesus thru
-          Mary, and will empower you to transform your family, work, community, country
-          and the world thru works of love, restoring all things in Christ thru Mama Mary.
+          The New Earth of Love Peace and Joy communities will help you get back
+          to your original condition as a son of God through your Total
+          Consecration to Jesus thru Mary, and will empower you to transform
+          your family, work, community, country and the world thru works of
+          love, restoring all things in Christ thru Mama Mary.
           <br /><br />
-          “Dear people of God in the Philippines, go forth in the power of the Holy Spirit
-          to renew the face of the earth- your own world first... your families, your
-          communities, your nation... and the wider world of Asia,...; and the world
-          beyond, working through faith for the renewal of God's whole creation." -Blessed
-          Pope John Paul II, Jan. 15, 1995
+          “Dear people of God in the Philippines, go forth in the power of the
+          Holy Spirit to renew the face of the earth- your own world first...
+          your families, your communities, your nation... and the wider world of
+          Asia,...; and the world beyond, working through faith for the renewal
+          of God's whole creation." -Blessed Pope John Paul II, Jan. 15, 1995
         </p>
       </q-card-section>
     </q-card>
@@ -40,13 +44,23 @@
   <div class="col-12">
     <!-- stepper -->
     <q-card class="q-mb-md">
-      <h4 style="padding-top: 20px" align="center" color="primary" class="text-blue">
-        Rheno Yagong
+      <h4
+        style="padding-top: 20px"
+        align="center"
+        color="primary"
+        class="text-blue"
+      >
+        Be part of our growing community
       </h4>
       <!-- <q-form @submit="userRegister" @reset="onReset"> -->
       <q-stepper v-model="step" ref="stepper" color="positive" animated>
         <!-- step 1: personal information -->
-        <q-step :name="1" title="Personal information" icon="face" :done="step > 1">
+        <q-step
+          :name="1"
+          title="Personal information"
+          icon="face"
+          :done="step > 1"
+        >
           <div class="row">
             <q-card-section class="col-md-6 col-sm-12 col-sx-12">
               <q-input
@@ -58,7 +72,9 @@
                 filled
                 lazy-rules
                 :rules="[
-                  (val) => (val !== null && val !== '') || 'Please type a valid surname',
+                  (val) =>
+                    (val !== null && val !== '') ||
+                    'Please type a valid surname',
                 ]"
               />
               <q-input
@@ -69,7 +85,10 @@
                 name="fname"
                 filled
                 lazy-rules
-                :rules="[(val) => (val && val.length > 0) || 'Please type a valid name']"
+                :rules="[
+                  (val) =>
+                    (val && val.length > 0) || 'Please type a valid name',
+                ]"
               />
               <q-input
                 v-model="mi"
@@ -80,7 +99,8 @@
                 filled
                 lazy-rules
                 :rules="[
-                  (val) => (val !== null && val !== '') || 'Please type a valid name',
+                  (val) =>
+                    (val !== null && val !== '') || 'Please type a valid name',
                 ]"
               />
               <q-input
@@ -92,7 +112,9 @@
                 filled
                 lazy-rules
                 :rules="[
-                  (val) => (val !== null && val !== '') || 'Please type a valid address',
+                  (val) =>
+                    (val !== null && val !== '') ||
+                    'Please type a valid address',
                 ]"
               />
               <q-select
@@ -131,7 +153,8 @@
                 lazy-rules
                 :rules="[
                   (val) =>
-                    (val !== null && val !== '') || 'Please type a valid birth date',
+                    (val !== null && val !== '') ||
+                    'Please type a valid birth date',
                 ]"
               />
               <q-input
@@ -145,7 +168,8 @@
                 lazy-rules
                 :rules="[
                   (val) =>
-                    (val !== null && val !== '') || 'Please type a valid contact number',
+                    (val !== null && val !== '') ||
+                    'Please type a valid contact number',
                 ]"
               />
               <q-input
@@ -159,7 +183,8 @@
                 lazy-rules
                 :rules="[
                   (val) =>
-                    (val !== null && val !== '') || 'Please type a valid email address',
+                    (val !== null && val !== '') ||
+                    'Please type a valid email address',
                 ]"
               />
               <q-select
@@ -179,7 +204,12 @@
         </q-step>
 
         <!-- step 2: career information -->
-        <q-step :name="2" title="Career Details" icon="account_circle" :done="step > 2">
+        <q-step
+          :name="2"
+          title="Career Details"
+          icon="account_circle"
+          :done="step > 2"
+        >
           <q-card-section class="">
             <q-input
               v-model="job"
@@ -190,7 +220,9 @@
               filled
               lazy-rules
               :rules="[
-                (val) => (val !== null && val !== '') || 'Please type a valid occupation',
+                (val) =>
+                  (val !== null && val !== '') ||
+                  'Please type a valid occupation',
               ]"
             />
             <q-input
@@ -250,7 +282,9 @@
               filled
               lazy-rules
               :rules="[
-                (val) => (val !== null && val !== '') || 'Please type a valid username',
+                (val) =>
+                  (val !== null && val !== '') ||
+                  'Please type a valid username',
               ]"
             />
             <q-input
@@ -263,7 +297,9 @@
               filled
               lazy-rules
               :rules="[
-                (val) => (val !== null && val !== '') || 'Please type a valid password',
+                (val) =>
+                  (val !== null && val !== '') ||
+                  'Please type a valid password',
               ]"
             />
           </q-card-section>

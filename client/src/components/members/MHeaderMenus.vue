@@ -8,7 +8,14 @@
       >
         <div class="col-xs-2">
           <q-toolbar>
-            <q-btn dense flat round icon="menu" size="xl" @click="toggleLeftDrawer" />
+            <q-btn
+              dense
+              flat
+              round
+              icon="menu"
+              size="xl"
+              @click="toggleLeftDrawer"
+            />
           </q-toolbar>
         </div>
         <div class="col-xs-10" style="margin-bottom: -10px">
@@ -21,7 +28,10 @@
         <RouterLink class="navbar-brand" to="/">
           <img :src="imgPath" style="max-width: 100%; height: auto" />
         </RouterLink>
-        <div class="col-md-12" style="display: flex; justify-content: space-evenly">
+        <div
+          class="col-md-12"
+          style="display: flex; justify-content: space-evenly"
+        >
           <q-toolbar v-for="link in links" :key="link.name">
             <RouterLink class="nav-link" :to="{ name: link.name }">
               {{ link.navMenu }}
@@ -34,7 +44,13 @@
       </div>
     </q-header>
 
-    <q-drawer v-model="leftDrawerOpen" side="left" overlay bordered class="bg-white">
+    <q-drawer
+      v-model="leftDrawerOpen"
+      side="left"
+      overlay
+      bordered
+      class="bg-white"
+    >
       <q-list
         bordered
         padding
@@ -88,25 +104,6 @@ memberRoutes[0].children.forEach((child) => {
     });
   }
 });
-
-// routes.forEach((r) => {
-//   console.log(r);
-//   if (r.meta.memberOnly) {
-//     r.children.forEach((child) => {
-//       if (child.path == "/") {
-//         links.push({
-//           to: "/member",
-//           name: child.name,
-//         });
-//       } else {
-//         links.push({
-//           to: child.path,
-//           name: child.name,
-//         });
-//       }
-//     });
-//   }
-// });
 
 //for image header
 const imgPath = ref("");

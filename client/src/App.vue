@@ -7,6 +7,7 @@ import { defineComponent } from "vue";
 
 const name = "App";
 </script>
+
 <style lang="scss">
 body {
   // color: $red-1;

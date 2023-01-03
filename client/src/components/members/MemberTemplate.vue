@@ -1,7 +1,17 @@
 |
 <template>
-  <MHeaderMenus />
-  <NELPJFooter />
+  <q-layout view="hHh lpR fff">
+    <!-- Header -->
+    <MHeaderMenus />
+    <!-- <GeneralMenus /> -->
+    <!-- Container -->
+    <q-page-container class="q-mx-md q-mt-md">
+      <!-- <router-view /> -->
+    </q-page-container>
+
+    <!-- Footer -->
+    <NELPJFooter />
+  </q-layout>
 </template>
 <script setup>
 import MHeaderMenus from "./MHeaderMenus.vue";

@@ -1,15 +1,15 @@
 //server routes
 
 // import express
-import express from 'express'
+import express from "express";
 
 // import function from controller
-// import { showUsers, userLogin } from '../controller/UserController.js'
+import { getMemberInfo } from "../controller/MController.js";
 
 // init express router
-const MRoutes = express.Router()
+const MRoutes = express.Router();
 
-// router.get('/users', showUsers)
+MRoutes.get("/member", getMemberInfo);
 // router.post('/VisitorLogin', userLogin)
 
 // router.post('/VisitorLogin', userLogin)
@@ -17,4 +17,4 @@ const MRoutes = express.Router()
 // router.get('/prayer', mysteries)
 // router.get('/prayer', prayerRosary)
 
-export default MRoutes
+export default MRoutes;

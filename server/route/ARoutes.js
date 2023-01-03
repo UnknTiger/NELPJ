@@ -1,17 +1,26 @@
 // server routes
 
 // import express
-import express from 'express'
+import express from "express";
 
 // import function from controller
-// import { showUsers, userLogin } from '../controller/UserController.js'
+import {
+	postActivity,
+	Activity,
+	deleteActivity,
+	postEvent,
+	getEvent,
+} from "../controller/AController.js";
 
 // init express router
-const ARoutes = express.Router()
+const ARoutes = express.Router();
 
-// router.get('/users', showUsers)
-// router.post('/VisitorLogin', userLogin)
+ARoutes.post("/admin/activities", postActivity);
+ARoutes.get("/admin/activities", Activity);
+ARoutes.delete("/admin/activities/:id", deleteActivity);
 
-// router.post('/VisitorLogin', userLogin)
+// ARoutes.get("/admin/members", getMembers);
 
-export default ARoutes
+ARoutes.post("/admin/events", postEvent);
+ARoutes.get("/admin/events", getEvent);
+export default ARoutes;

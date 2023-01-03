@@ -43,81 +43,14 @@
       </q-splitter>
     </div>
   </q-card>
-
-  <!-- <DeliverancePrayerVue /> -->
-
-  <!-- <PrayerRosary /> -->
-  <!-- holy rosary in q-tabs -->
-
-  <!-- holy rosary dialog button -->
-  <!-- <div class="q-pa-md q-gutter-sm">
-        <q-btn label="Holly Rosary" color="positive" @click="dialog = true" />
-
-        <q-dialog
-          v-model="dialog"
-          persistent
-          :maximized="maximizedToggle"
-          transition-show="slide-up"
-          transition-hide="slide-down"
-        >
-          <q-card class="bg-positive text-white">
-            <q-bar>
-              <q-space />
-
-              <q-btn
-                dense
-                flat
-                icon="minimize"
-                @click="maximizedToggle = false"
-                :disable="!maximizedToggle"
-              >
-                <q-tooltip v-if="maximizedToggle" class="bg-white text-primary"
-                  >Holy Rosary</q-tooltip
-                >
-              </q-btn>
-              <q-btn
-                dense
-                flat
-                icon="crop_square"
-                @click="maximizedToggle = true"
-                :disable="maximizedToggle"
-              >
-                <q-tooltip v-if="!maximizedToggle" class="bg-white text-primary"
-                  >Holy Rosary</q-tooltip
-                >
-              </q-btn>
-              <q-btn dense flat icon="close" v-close-popup>
-                <q-tooltip class="bg-white text-primary">Close</q-tooltip>
-              </q-btn>
-            </q-bar>
-
-            <q-card-section>
-              <div class="text-h6">Holy Rosary</div>
-            </q-card-section>
-
-            <q-card-section>
-              <div class="q-pa-sm">
-                <div class="q-col-gutter-md row items-start">
-                  <div class="col-4">
-                    <q-img src="../../assets/prayerImages/rosaryGuide.png" :ratio="1" />
-                  </div>
-                </div>
-              </div>
-            </q-card-section>
-          </q-card>
-        </q-dialog>
-      </div> -->
 </template>
 <script setup>
 import DeliverancePrayerVue from "./PrayerComponents/DeliverancePrayer.vue";
 import { ref } from "vue";
 import { api } from "../../boot/axios.js";
-// import PrayerRosary from "../visitor/PrayerComponents/PrayerRosary.vue";
 // import { useRouter, useRoute } from "vue-router";
 
 // const router = useRouter();
-// const dialog = ref(false);
-// const maximizedToggle = ref(true);
 const tab = ref();
 const splitterModel = ref(20);
 
@@ -152,7 +85,6 @@ api
   });
 
 const prayer4rosary = ref([]);
-// const tab2 = ref();
 
 const convertToSlug = (string) => {
   let slug = "";

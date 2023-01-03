@@ -11,7 +11,7 @@ const routes = [
     },
     children: [
       {
-        path: "",
+        path: "/",
         name: "Homepage",
         component: () => import("../components/visitor/VisitorHomepage.vue"),
       },
@@ -36,12 +36,13 @@ const routes = [
       {
         path: "aboutUs",
         name: "About us",
-        component: () => import("../components/AboutUs.vue"),
+        component: () => import("../components/generals/AboutUs.vue"),
       },
       {
         path: "materials",
         name: "NELPJ Materials",
-        component: () => import("../components/visitor/VisitorMaterials.vue"),
+        // component: () => import("../components/visitor/VisitorMaterials.vue"),
+        component: () => import("../components/generals/NELPJMaterials.vue"),
       },
       {
         path: "UserLogin",
@@ -84,13 +85,14 @@ const routes = [
         path: "aboutUs",
         navMenu: "AboutUs",
         name: "MemberAboutUs",
-        component: () => import("../components/AboutUs.vue"),
+        component: () => import("../components/generals/AboutUs.vue"),
       },
       {
         path: "materials",
         navMenu: "Materials",
         name: "MemberMaterials",
-        component: () => import("../components/members/MemberMaterials.vue"),
+        // component: () => import("../components/members/MemberMaterials.vue"),
+        component: () => import("../components/generals/NELPJMaterials.vue"),
       },
       {
         path: "sponsorships",
@@ -98,12 +100,12 @@ const routes = [
         name: "MemberSponsorships",
         component: () => import("../components/members/MemberSponsorships.vue"),
       },
-      {
-        path: "messages",
-        navMenu: "Messages",
-        name: "MemberMessages",
-        component: () => import("../components/members/MemberMessages.vue"),
-      },
+      // {
+      //   path: "messages",
+      //   navMenu: "Messages",
+      //   name: "MemberMessages",
+      //   component: () => import("../components/members/MemberMessages.vue"),
+      // },
     ],
   }, //End of member routes
 

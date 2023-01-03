@@ -4,7 +4,8 @@
     <VHeaderMenu />
     <!-- <GeneralMenus /> -->
     <!-- Container -->
-    <q-page-container class="q-mx-md q-mt-md">
+    <q-page-container class="q-mx-sm q-my-sm">
+      <!-- class="q-mx-md q-mt-md" -->
       <router-view />
     </q-page-container>
 

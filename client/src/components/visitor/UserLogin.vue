@@ -1,75 +1,73 @@
 <template>
-  <div
-    class="q-pa-none q-pa-sm justify-content-center"
-    style="max-width: 400px"
-  >
-    <q-card
-      align="center"
-      bordered
-      class="bg-greeen-6 my-card"
-      style="height: 478px"
-    >
-      <q-card-section class="q-ma-none q-pa-none">
-        <h4 class="text-h6 text-light-green-10" align="center">
-          NELPJ User Login
-        </h4>
-      </q-card-section>
+  <center>
+    <div class="justify-center" style="max-width: 400px" align="center">
+      <q-card align="center" bordered class="bg-greeen-6 my-card">
+        <q-card-section class="q-ma-none q-pa-none">
+          <h4 class="text-h6 text-light-green-10" align="center">
+            NELPJ User Login
+          </h4>
+        </q-card-section>
 
-      <q-separator dark inset />
+        <q-separator inset />
 
-      <q-card-section>
-        <q-form @submit="onSubmit" @reset="onReset" class="q-gutter-sm">
-          <div calss="q-ma-md">
-            <q-input
-              v-model="username"
-              :loading="Load"
-              :disable="Load"
-              label="Enter Username"
-              name="username"
-              filled
-              lazy-rules
-              :rules="[
-                (val) => (val && val.length > 0) || 'Please type something',
-              ]"
-            />
+        <q-card-section>
+          <q-form @reset="onReset" class="q-gutter-sm">
+            <div calss="q-ma-md">
+              <q-input
+                class="q-my-md"
+                v-model="username"
+                :loading="Load"
+                :disable="Load"
+                label="Enter Username"
+                name="username"
+                filled
+                lazy-rules
+                :rules="[
+                  (val) => (val && val.length > 0) || 'Please type something',
+                ]"
+              />
 
-            <q-input
-              v-model="password"
-              :loading="Load"
-              :disable="Load"
-              label="Enter Password"
-              name="pass"
-              filled
-              lazy-rules
-              :rules="[
-                (val) =>
-                  (val !== null && val !== '') ||
-                  'Please type your password correctly',
-              ]"
-            />
-          </div>
-          <div class="buttons">
-            <q-btn
-              label="Submit"
-              type="submit"
-              color="positive"
-              @click="userOnlogin"
-              :loading="Load"
-              :disable="Load"
-            />
-            <q-btn
-              label="Reset"
-              type="reset"
-              color="white"
-              text-color="light-green-10"
-              class="q-ml-sm"
-              @click="onReset"
-            />
-          </div>
-        </q-form>
-      </q-card-section>
-    </q-card>
-  </div>
+              <q-input
+                class="q-my-md"
+                v-model="password"
+                :loading="Load"
+                :disable="Load"
+                label="Enter Password"
+                name="pass"
+                type="password"
+                filled
+                lazy-rules
+                :rules="[
+                  (val) =>
+                    (val !== null && val !== '') ||
+                    'Please type your password correctly',
+                ]"
+              />
+            </div>
+            <div class="abolute-bottom">
+              <q-btn
+                label="Reset"
+                type="reset"
+                color="white"
+                text-color="light-green-10"
+                class="q-mx-xl q-mt-xl"
+                @click="onReset"
+              />
+              <q-btn
+                label="Submit"
+                type="submit"
+                color="positive"
+                @click="userOnlogin"
+                :loading="Load"
+                :disable="Load"
+                class="q-mx-xl q-mt-xl"
+              />
+            </div>
+          </q-form>
+        </q-card-section>
+      </q-card>
+    </div>
+  </center>
 </template>
 
 <script setup>
@@ -93,6 +91,7 @@ function onReset() {
   username.value = null;
   password.value = null;
 }
+
 const userOnlogin = () => {
   //getting values from form & storing it to js variable
   Load.value = true;
@@ -113,7 +112,11 @@ const userOnlogin = () => {
         });
         console.log(response.data[0].role);
 
-        UserStore.setUser({ role: response.data[0].role, status: true });
+        UserStore.setUser({
+          id: response.data[0].id,
+          role: response.data[0].role,
+          status: true,
+        });
 
         if (response.data[0].role == 1) {
           router.push("/admin");
@@ -133,7 +136,10 @@ const userOnlogin = () => {
 };
 </script>
 <style scoped>
-.buttons {
-  margin-top: 170px;
-}
+/* #bgImg {
+  background-image: url("../../assets/hompageImages/pexels-vanderlei-longo-2081128.jpg");
+  background-repeat: repeat-y;
+  background-position: right top;
+  width: auto;
+} */
 </style>

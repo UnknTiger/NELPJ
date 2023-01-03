@@ -1,9 +1,11 @@
+import { times } from "lodash";
 import { defineStore } from "pinia";
 
 export const useUserStore = defineStore("user", {
   state: () => ({
     name: "",
     // role: 0,
+    id: 0,
     role: 2,
     loginStatus: false,
   }),
@@ -16,6 +18,7 @@ export const useUserStore = defineStore("user", {
     //   this.loginStatus = status
     // },
     setUser(data) {
+      this.id = data.id;
       this.role = data.role;
       this.loginStatus = data.status;
       this.name = data.name;
@@ -23,6 +26,7 @@ export const useUserStore = defineStore("user", {
     logout() {
       this.role = 2;
       this.loginStatus = false;
+      this.id = 0;
     },
   },
 });

@@ -1,6 +1,4 @@
 <template>
-  <div><h6>Materials page</h6></div>
-  <!-- <teleport to="prayerRosary"> -->
   <div class="q-pa-md" style="max-width: 350px">
     <q-list bordered class="rounded-borders">
       <q-expansion-item
@@ -20,7 +18,6 @@
       </q-expansion-item>
     </q-list>
   </div>
-  <!-- </teleport> -->
 </template>
 
 <script setup>
@@ -44,7 +41,6 @@ api
         index.title;
         prayer4rosary.value.push({
           title: index.title,
-
           desc: index.description,
         });
         i++;

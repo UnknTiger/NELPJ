@@ -1,7 +1,7 @@
 <template>
   <div class="row">
-    <div class="">
-      <q-card class="q-pa-md my-card">
+    <div class="col-3 q-ma-xs">
+      <q-card class="q-pa-sm text-center my-card">
         <h6>Prayers of the Rosary</h6>
 
         <q-img
@@ -9,7 +9,7 @@
           v-for="prayer in prayer4rosary"
           :name="prayer.name"
           :key="prayer.id"
-          :ratio="1"
+          :ratio="4 / 3"
           @click="showDialog(prayer.id)"
           src="../../../assets/prayerImages/HandWRosary.png"
         >
@@ -30,7 +30,11 @@
           />
           <q-card-section>
             <div class="row no-wrap items-center">
-              <div class="col text-h6 ellipsis" align="center" style="font-weight: bold">
+              <div
+                class="col text-h6 ellipsis"
+                align="center"
+                style="font-weight: bold"
+              >
                 {{ specificPrayer[0].title }}
               </div>
             </div>
@@ -49,7 +53,20 @@
         </q-card>
       </q-dialog>
     </div>
+
+    <div class="col-grow q-ma-xs">
+      <q-card class="q-pa-md">
+        <q-img
+          style=""
+          bordered
+          src="../../../assets/prayerImages/rosaryGuide.png"
+        >
+        </q-img>
+      </q-card>
+    </div>
   </div>
+
+  <div></div>
 </template>
 
 <script setup>

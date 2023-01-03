@@ -38,7 +38,7 @@ export default route(function (/* { store, ssrContext } */) {
   // const isAuthenticated = true;
   const UserStore = useUserStore();
 
-  if (!UserStore.loginStatus) { 
+  if (!UserStore.loginStatus) {
     console.log(UserStore.loginStatus);
     if (LocalStorage.getItem("user")) {
       UserStore.setUser({
@@ -56,6 +56,8 @@ export default route(function (/* { store, ssrContext } */) {
       UserStore.logout();
       LocalStorage.remove("user");
       next({
+        // path: "/",
+        load: location.reload(),
         path: "/",
       });
     } else {
@@ -74,6 +76,7 @@ export default route(function (/* { store, ssrContext } */) {
             break;
 
           default:
+            // next({ path: "/admin" });
             next({ path: "/admin" });
             break;
         }
